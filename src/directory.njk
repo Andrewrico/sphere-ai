@@ -1,0 +1,1681 @@
+---
+layout: base.njk
+title: AI Tools Directory — SPHERE
+---
+
+<style>
+/* ═══════════════════════════════════════════════════════════
+   AI TOOLS DIRECTORY — SPHERE PROJECT
+   Design: Dark editorial SaaS with warm amber accents
+   Font: Clash Display + DM Sans
+═══════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Mono:wght@300;400&display=swap');
+
+:root {
+  --bg:        #0a0a0f;
+  --surface:   #111118;
+  --surface2:  #16161f;
+  --border:    rgba(255,255,255,0.07);
+  --border2:   rgba(255,255,255,0.12);
+  --gold:      #f5a623;
+  --gold2:     #ff7c3a;
+  --blue:      #3b82f6;
+  --green:     #22c55e;
+  --pink:      #ec4899;
+  --purple:    #a855f7;
+  --text:      #e8e8f0;
+  --muted:     #6b7280;
+  --muted2:    #9ca3af;
+  --card-r:    14px;
+  --nav-h:     64px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  /* subtle noise texture */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+/* ── STICKY NAV ─────────────────────────────────────────── */
+.dir-nav {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: rgba(10, 10, 15, 0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid var(--border);
+  height: var(--nav-h);
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
+  gap: 1rem;
+}
+
+.dir-nav-brand {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.dir-nav-brand span { color: var(--muted); }
+
+.search-wrap {
+  flex: 1;
+  max-width: 380px;
+  position: relative;
+}
+
+.search-wrap svg {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  color: var(--muted);
+  pointer-events: none;
+}
+
+#searchInput {
+  width: 100%;
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem 0.5rem 2.5rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.85rem;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+#searchInput::placeholder { color: var(--muted); }
+#searchInput:focus {
+  border-color: rgba(245, 166, 35, 0.5);
+  box-shadow: 0 0 0 3px rgba(245, 166, 35, 0.08);
+}
+
+.cat-filters {
+  display: flex;
+  gap: 0.4rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  flex: 1;
+  padding-right: 0.5rem;
+}
+.cat-filters::-webkit-scrollbar { display: none; }
+
+.cat-pill {
+  white-space: nowrap;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--muted2);
+  cursor: pointer;
+  transition: all 0.18s;
+  flex-shrink: 0;
+}
+.cat-pill:hover, .cat-pill.active {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #000;
+}
+
+/* ── HERO ───────────────────────────────────────────────── */
+.dir-hero {
+  text-align: center;
+  padding: 5rem 2rem 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.dir-hero::before {
+  content: '';
+  position: absolute;
+  top: -40%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 700px;
+  height: 400px;
+  background: radial-gradient(ellipse, rgba(245,166,35,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.dir-hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  border: 1px solid rgba(245,166,35,0.3);
+  padding: 0.3rem 1rem;
+  border-radius: 999px;
+  margin-bottom: 1.5rem;
+}
+
+.dir-hero-eyebrow::before {
+  content: '';
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 8px var(--gold);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+.dir-hero h1 {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.25rem;
+}
+
+.dir-hero h1 em {
+  font-style: normal;
+  background: linear-gradient(120deg, var(--gold), var(--gold2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.dir-hero p {
+  font-size: 1.05rem;
+  color: var(--muted2);
+  max-width: 52ch;
+  margin: 0 auto 2.5rem;
+  font-weight: 300;
+}
+
+.dir-stats {
+  display: inline-flex;
+  gap: 3rem;
+  padding: 1rem 2.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: 12px;
+}
+
+.dir-stat-val {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--gold);
+  line-height: 1;
+}
+.dir-stat-label {
+  font-size: 0.72rem;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+  margin-top: 0.25rem;
+}
+
+/* ── MAIN LAYOUT ────────────────────────────────────────── */
+.dir-main {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem 6rem;
+}
+
+/* no-results */
+.no-results {
+  display: none;
+  text-align: center;
+  padding: 4rem 2rem;
+  color: var(--muted);
+}
+.no-results svg { width: 48px; height: 48px; opacity: 0.3; margin-bottom: 1rem; }
+
+/* ── CATEGORY SECTION ───────────────────────────────────── */
+.cat-section {
+  margin-bottom: 4rem;
+  transition: opacity 0.2s;
+}
+.cat-section.hidden { display: none; }
+
+.cat-section-head {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.cat-icon-wrap {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.cat-section-info { flex: 1; }
+
+.cat-section-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 0.15rem;
+}
+
+.cat-section-desc {
+  font-size: 0.82rem;
+  color: var(--muted);
+  max-width: 70ch;
+  line-height: 1.5;
+}
+
+.cat-count {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--muted);
+  border: 1px solid var(--border2);
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
+/* ── TOOL GRID ──────────────────────────────────────────── */
+.tool-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+/* ── TOOL CARD ──────────────────────────────────────────── */
+.tool-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--card-r);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.tool-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 60%, rgba(255,255,255,0.02));
+  pointer-events: none;
+}
+
+.tool-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--border2);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+}
+
+.tool-card-head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.tool-logo {
+  width: 40px; height: 40px;
+  border-radius: 9px;
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.tool-logo img {
+  width: 100%; height: 100%;
+  object-fit: contain;
+  padding: 6px;
+  loading: lazy;
+}
+
+.tool-name {
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+.tool-badge {
+  font-size: 0.62rem;
+  font-family: 'DM Mono', monospace;
+  letter-spacing: 0.08em;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid;
+  margin-top: 0.2rem;
+  display: inline-block;
+}
+
+.badge-free { color: var(--green); border-color: rgba(34,197,94,0.3); background: rgba(34,197,94,0.06); }
+.badge-freemium { color: var(--blue); border-color: rgba(59,130,246,0.3); background: rgba(59,130,246,0.06); }
+.badge-paid { color: var(--gold); border-color: rgba(245,166,35,0.3); background: rgba(245,166,35,0.06); }
+
+.tool-desc {
+  font-size: 0.8rem;
+  color: var(--muted2);
+  line-height: 1.55;
+  flex: 1;
+}
+
+.tool-card-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+.tool-tags {
+  display: flex;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+.tool-tag {
+  font-size: 0.65rem;
+  color: var(--muted);
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+}
+
+.visit-btn {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  padding: 0.45rem 1rem;
+  border-radius: 7px;
+  background: var(--gold);
+  color: #000;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background 0.15s, transform 0.15s;
+}
+.visit-btn:hover {
+  background: var(--gold2);
+  transform: scale(1.04);
+}
+.visit-btn svg { width: 11px; height: 11px; }
+
+/* ── SEARCH HIGHLIGHT ───────────────────────────────────── */
+.tool-card.search-hidden { display: none; }
+
+/* ── FOOTER ─────────────────────────────────────────────── */
+.dir-footer {
+  border-top: 1px solid var(--border);
+  padding: 2.5rem 2rem;
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+/* ── COLOR THEMES PER CATEGORY ──────────────────────────── */
+.theme-blue   .cat-icon-wrap { background: rgba(59,130,246,0.12);  }
+.theme-purple .cat-icon-wrap { background: rgba(168,85,247,0.12);  }
+.theme-green  .cat-icon-wrap { background: rgba(34,197,94,0.12);   }
+.theme-gold   .cat-icon-wrap { background: rgba(245,166,35,0.12);  }
+.theme-pink   .cat-icon-wrap { background: rgba(236,72,153,0.12);  }
+.theme-red    .cat-icon-wrap { background: rgba(239,68,68,0.12);   }
+.theme-cyan   .cat-icon-wrap { background: rgba(6,182,212,0.12);   }
+.theme-orange .cat-icon-wrap { background: rgba(249,115,22,0.12);  }
+.theme-teal   .cat-icon-wrap { background: rgba(20,184,166,0.12);  }
+.theme-indigo .cat-icon-wrap { background: rgba(99,102,241,0.12);  }
+.theme-rose   .cat-icon-wrap { background: rgba(244,63,94,0.12);   }
+.theme-lime   .cat-icon-wrap { background: rgba(132,204,22,0.12);  }
+.theme-amber  .cat-icon-wrap { background: rgba(245,158,11,0.12);  }
+.theme-sky    .cat-icon-wrap { background: rgba(14,165,233,0.12);  }
+.theme-violet .cat-icon-wrap { background: rgba(139,92,246,0.12);  }
+
+/* ── RESPONSIVE ─────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .dir-stats { gap: 2rem; padding: 0.75rem 1.5rem; }
+  .dir-nav { gap: 0.6rem; padding: 0 1rem; }
+  .dir-nav-brand { display: none; }
+}
+
+@media (max-width: 640px) {
+  .tool-grid { grid-template-columns: 1fr 1fr; }
+  .dir-hero { padding: 3rem 1.25rem 2.5rem; }
+  .dir-stats { flex-direction: column; gap: 1rem; text-align: center; }
+  .cat-filters { display: none; }
+  .dir-main { padding: 0 1rem 4rem; }
+  .cat-section-head { flex-wrap: wrap; }
+}
+
+@media (max-width: 420px) {
+  .tool-grid { grid-template-columns: 1fr; }
+}
+
+@keyframes pulse-dot {
+  0%,100% { opacity:1; } 50% { opacity:0.3; }
+}
+
+/* ── SCROLL FADE IN ─────────────────────────────────────── */
+.cat-section {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: sectionReveal 0.5s ease forwards;
+}
+@keyframes sectionReveal {
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+
+<!-- ════════════════════════════════════════════════════════
+     STICKY NAV
+════════════════════════════════════════════════════════ -->
+<nav class="dir-nav" role="navigation" aria-label="AI Directory Navigation">
+  <div class="dir-nav-brand">AI<span>/</span>DIRECTORY</div>
+
+  <div class="search-wrap">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+    </svg>
+    <input type="search" id="searchInput" placeholder="Search tools..." autocomplete="off" aria-label="Search AI tools" />
+  </div>
+
+  <div class="cat-filters" role="tablist" aria-label="Filter by category">
+    <button class="cat-pill active" data-cat="all" role="tab">All</button>
+    <button class="cat-pill" data-cat="chatbots">Chatbots</button>
+    <button class="cat-pill" data-cat="image">Image</button>
+    <button class="cat-pill" data-cat="video">Video</button>
+    <button class="cat-pill" data-cat="audio">Audio</button>
+    <button class="cat-pill" data-cat="coding">Coding</button>
+    <button class="cat-pill" data-cat="writing">Writing</button>
+    <button class="cat-pill" data-cat="marketing">Marketing</button>
+    <button class="cat-pill" data-cat="productivity">Productivity</button>
+    <button class="cat-pill" data-cat="data">Data</button>
+    <button class="cat-pill" data-cat="automation">Automation</button>
+    <button class="cat-pill" data-cat="website">Website</button>
+    <button class="cat-pill" data-cat="presentation">Presentation</button>
+    <button class="cat-pill" data-cat="resume">Resume</button>
+    <button class="cat-pill" data-cat="research">Research</button>
+    <button class="cat-pill" data-cat="design3d">3D & Design</button>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════════════════ -->
+<header class="dir-hero" role="banner">
+  <div class="dir-hero-eyebrow">LIVE DIRECTORY 2025</div>
+  <h1>The <em>Ultimate</em> AI<br>Tools Directory</h1>
+  <p>Discover, compare, and launch into the best AI tools across every category — curated for builders, creators, and professionals.</p>
+  <div class="dir-stats">
+    <div>
+      <div class="dir-stat-val" id="totalTools">150+</div>
+      <div class="dir-stat-label">TOOLS</div>
+    </div>
+    <div>
+      <div class="dir-stat-val">15</div>
+      <div class="dir-stat-label">CATEGORIES</div>
+    </div>
+    <div>
+      <div class="dir-stat-val">Daily</div>
+      <div class="dir-stat-label">UPDATES</div>
+    </div>
+  </div>
+</header>
+
+<!-- ════════════════════════════════════════════════════════
+     MAIN CONTENT
+════════════════════════════════════════════════════════ -->
+<main class="dir-main" id="dirMain" role="main">
+
+  <div class="no-results" id="noResults" aria-live="polite">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+    </svg>
+    <p>No tools found. Try a different search term.</p>
+  </div>
+
+  <!-- ── 1. AI CHATBOTS & ASSISTANTS ─────────────────────── -->
+  <section class="cat-section theme-blue" data-category="chatbots" id="chatbots" aria-labelledby="cat-chatbots">
+    <div class="cat-section-head">
+      <div class="cat-icon-wrap">💬</div>
+      <div class="cat-section-info">
+        <h2 class="cat-section-title" id="cat-chatbots">AI Chatbots & Assistants</h2>
+        <p class="cat-section-desc">Conversational AI systems that understand natural language, answer questions, generate content, and assist with complex reasoning tasks across virtually every domain.</p>
+      </div>
+      <span class="cat-count">10 tools</span>
+    </div>
+    <div class="tool-grid">
+      <!-- ChatGPT -->
+      <article class="tool-card" data-name="chatgpt openai assistant">
+        <div class="tool-card-head">
+          <div class="tool-logo">🤖</div>
+          <div>
+            <div class="tool-name">ChatGPT</div>
+            <span class="tool-badge badge-freemium">FREEMIUM</span>
+          </div>
+        </div>
+        <p class="tool-desc">OpenAI's flagship conversational AI with GPT-4o, vision, voice, and code interpreter capabilities. The most widely adopted AI assistant globally.</p>
+        <div class="tool-card-foot">
+          <div class="tool-tags"><span class="tool-tag">GPT-4o</span><span class="tool-tag">Vision</span></div>
+          <a href="https://chat.openai.com" target="_blank" rel="noopener" class="visit-btn" aria-label="Visit ChatGPT">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
+        </div>
+      </article>
+      <!-- Claude -->
+      <article class="tool-card" data-name="claude anthropic assistant">
+        <div class="tool-card-head">
+          <div class="tool-logo">🧠</div>
+          <div>
+            <div class="tool-name">Claude</div>
+            <span class="tool-badge badge-freemium">FREEMIUM</span>
+          </div>
+        </div>
+        <p class="tool-desc">Anthropic's safety-focused AI with exceptional reasoning, long-context understanding (200K tokens), and nuanced writing abilities.</p>
+        <div class="tool-card-foot">
+          <div class="tool-tags"><span class="tool-tag">200K ctx</span><span class="tool-tag">Safe AI</span></div>
+          <a href="https://claude.ai" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
+        </div>
+      </article>
+      <!-- Gemini -->
+      <article class="tool-card" data-name="gemini google assistant">
+        <div class="tool-card-head">
+          <div class="tool-logo">✨</div>
+          <div>
+            <div class="tool-name">Gemini</div>
+            <span class="tool-badge badge-freemium">FREEMIUM</span>
+          </div>
+        </div>
+        <p class="tool-desc">Google's multimodal AI assistant tightly integrated with Google Workspace, Search, and capable of 1M token context windows.</p>
+        <div class="tool-card-foot">
+          <div class="tool-tags"><span class="tool-tag">Multimodal</span><span class="tool-tag">Google</span></div>
+          <a href="https://gemini.google.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
+        </div>
+      </article>
+      <!-- Perplexity -->
+      <article class="tool-card" data-name="perplexity search ai">
+        <div class="tool-card-head">
+          <div class="tool-logo">🔍</div>
+          <div>
+            <div class="tool-name">Perplexity AI</div>
+            <span class="tool-badge badge-freemium">FREEMIUM</span>
+          </div>
+        </div>
+        <p class="tool-desc">AI-powered search engine that provides cited, real-time answers by crawling the web and synthesizing information from multiple sources.</p>
+        <div class="tool-card-foot">
+          <div class="tool-tags"><span class="tool-tag">Real-time</span><span class="tool-tag">Citations</span></div>
+          <a href="https://perplexity.ai" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
+        </div>
+      </article>
+      <!-- Grok -->
+      <article class="tool-card" data-name="grok xai elon musk">
+        <div class="tool-card-head">
+          <div class="tool-logo">⚡</div>
+          <div>
+            <div class="tool-name">Grok</div>
+            <span class="tool-badge badge-freemium">FREEMIUM</span>
+          </div>
+        </div>
+        <p class="tool-desc">xAI's rebellious AI assistant with real-time X/Twitter data access, humor, and unfiltered responses on current events.</p>
+        <div class="tool-card-foot">
+          <div class="tool-tags"><span class="tool-tag">Real-time X</span><span class="tool-tag">xAI</span></div>
+          <a href="https://grok.x.ai" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
+        </div>
+      </article>
+      <!-- Meta AI -->
+      <article class="tool-card" data-name="meta ai llama facebook">
+        <div class="tool-card-head">
+          <div class="tool-logo">🦙</div>
+          <div>
+            <div class="tool-name">Meta AI</div>
+            <span class="tool-badge badge-free">FREE</span>
+          </div>
+        </div>
+        <p class="tool-desc">Meta's AI assistant powered by Llama models, embedded across WhatsApp, Instagram, and Facebook for seamless social AI interaction.</p>
+        <div class="tool-card-foot">
+          <div class="tool-tags"><span class="tool-tag">Llama</span><span class="tool-tag">Social</span></div>
+          <a href="https://ai.meta.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
+        </div>
+      </article>
+      <!-- Copilot -->
+      <article class="tool-card" data-name="copilot microsoft bing">
+        <div class="tool-card-head">
+          <div class="tool-logo">🪟</div>
+          <div>
+            <div class="tool-name">Microsoft Copilot</div>
+            <span class="tool-badge badge-freemium">FREEMIUM</span>
+          </div>
+        </div>
+        <p class="tool-desc">Microsoft's AI companion built on GPT-4, integrated across Windows, Edge, Office 365, and Bing for seamless productivity enhancement.</p>
+        <div class="tool-card-foot">
+          <div class="tool-tags"><span class="tool-tag">Office 365</span><span class="tool-tag">GPT-4</span></div>
+          <a href="https://copilot.microsoft.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
+        </div>
+      </article>
+      <!-- Mistral -->
+      <article class="tool-card" data-name="mistral le chat open source">
+        <div class="tool-card-head">
+          <div class="tool-logo">🌪</div>
+          <div>
+            <div class="tool-name">Le Chat (Mistral)</div>
+            <span class="tool-badge badge-free">FREE</span>
+          </div>
+        </div>
+        <p class="tool-desc">Mistral AI's fast, open-weight language models and chat interface — Europe's leading AI lab with strong multilingual capabilities.</p>
+        <div class="tool-card-foot">
+          <div class="tool-tags"><span class="tool-tag">Open Weight</span><span class="tool-tag">EU</span></div>
+          <a href="https://chat.mistral.ai" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
+        </div>
+      </article>
+      <!-- Character AI -->
+      <article class="tool-card" data-name="character ai roleplay persona">
+        <div class="tool-card-head">
+          <div class="tool-logo">🎭</div>
+          <div>
+            <div class="tool-name">Character.AI</div>
+            <span class="tool-badge badge-freemium">FREEMIUM</span>
+          </div>
+        </div>
+        <p class="tool-desc">Platform for creating and interacting with custom AI personas and characters with distinct personalities for entertainment and education.</p>
+        <div class="tool-card-foot">
+          <div class="tool-tags"><span class="tool-tag">Personas</span><span class="tool-tag">Roleplay</span></div>
+          <a href="https://character.ai" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
+        </div>
+      </article>
+      <!-- Pi -->
+      <article class="tool-card" data-name="pi inflection personal ai">
+        <div class="tool-card-head">
+          <div class="tool-logo">π</div>
+          <div>
+            <div class="tool-name">Pi by Inflection</div>
+            <span class="tool-badge badge-free">FREE</span>
+          </div>
+        </div>
+        <p class="tool-desc">A personal AI companion focused on emotional intelligence, empathetic conversations, and helping users think through personal challenges.</p>
+        <div class="tool-card-foot">
+          <div class="tool-tags"><span class="tool-tag">Empathetic</span><span class="tool-tag">Personal</span></div>
+          <a href="https://pi.ai" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ── 2. AI IMAGE GENERATION ───────────────────────────── -->
+  <section class="cat-section theme-purple" data-category="image" id="image" aria-labelledby="cat-image">
+    <div class="cat-section-head">
+      <div class="cat-icon-wrap">🎨</div>
+      <div class="cat-section-info">
+        <h2 class="cat-section-title" id="cat-image">AI Image Generation</h2>
+        <p class="cat-section-desc">Transform text prompts into stunning visuals, artwork, photography, and design assets using diffusion models and generative neural networks.</p>
+      </div>
+      <span class="cat-count">10 tools</span>
+    </div>
+    <div class="tool-grid">
+      <article class="tool-card" data-name="midjourney image art">
+        <div class="tool-card-head"><div class="tool-logo">🌈</div><div><div class="tool-name">Midjourney</div><span class="tool-badge badge-paid">PAID</span></div></div>
+        <p class="tool-desc">The gold standard for AI art generation, producing cinematic, painterly images with unmatched aesthetic quality and style control.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Discord</span><span class="tool-tag">V6</span></div><a href="https://midjourney.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="dall-e openai image">
+        <div class="tool-card-head"><div class="tool-logo">🖼</div><div><div class="tool-name">DALL·E 3</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">OpenAI's image model with precise prompt following, integrated directly into ChatGPT for conversational image creation and editing.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">OpenAI</span><span class="tool-tag">Precise</span></div><a href="https://openai.com/dall-e-3" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="stable diffusion image art">
+        <div class="tool-card-head"><div class="tool-logo">🌊</div><div><div class="tool-name">Stable Diffusion</div><span class="tool-badge badge-free">FREE</span></div></div>
+        <p class="tool-desc">Open-source diffusion model with the largest ecosystem of fine-tuned checkpoints, LoRAs, and community extensions via Automatic1111 and ComfyUI.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Open Source</span><span class="tool-tag">Local</span></div><a href="https://stability.ai" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="adobe firefly image design">
+        <div class="tool-card-head"><div class="tool-logo">🔥</div><div><div class="tool-name">Adobe Firefly</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Adobe's commercially safe generative AI trained on licensed content, integrated with Photoshop and Illustrator for professional workflows.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Commercial</span><span class="tool-tag">Adobe</span></div><a href="https://firefly.adobe.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="flux image generation">
+        <div class="tool-card-head"><div class="tool-logo">⚡</div><div><div class="tool-name">FLUX</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Black Forest Labs' state-of-the-art image model surpassing previous diffusion architectures in photorealism and prompt adherence.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">SOTA</span><span class="tool-tag">Photorealism</span></div><a href="https://blackforestlabs.ai" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="ideogram text image logo">
+        <div class="tool-card-head"><div class="tool-logo">🔤</div><div><div class="tool-name">Ideogram</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Breakthrough image AI that excels at generating legible text within images — ideal for posters, logos, and typographic designs.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Text in Images</span><span class="tool-tag">Logos</span></div><a href="https://ideogram.ai" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="leonardo ai image game art">
+        <div class="tool-card-head"><div class="tool-logo">🎮</div><div><div class="tool-name">Leonardo AI</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">AI image platform tailored for game assets, concept art, and character design with fine-tuning and canvas editing tools.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Game Art</span><span class="tool-tag">Fine-tuning</span></div><a href="https://leonardo.ai" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="canva ai image design">
+        <div class="tool-card-head"><div class="tool-logo">🖌</div><div><div class="tool-name">Canva AI</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Canva's suite of AI image tools including Magic Media, background removal, and Magic Edit — embedded in the world's most popular design platform.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Design</span><span class="tool-tag">Magic Media</span></div><a href="https://canva.com/ai-image-generator" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="runway image video generation">
+        <div class="tool-card-head"><div class="tool-logo">🚀</div><div><div class="tool-name">Runway Gen</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Professional-grade generative AI for images and video with inpainting, outpainting, and motion brush capabilities for creators.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Creative</span><span class="tool-tag">Gen-3</span></div><a href="https://runwayml.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="nightcafe image art community">
+        <div class="tool-card-head"><div class="tool-logo">🌙</div><div><div class="tool-name">NightCafe</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">AI art generator and community platform supporting multiple models including SDXL, DALL·E, and proprietary algorithms with social sharing.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Community</span><span class="tool-tag">Multi-model</span></div><a href="https://nightcafe.studio" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ── 3. AI VIDEO CREATION ─────────────────────────────── -->
+  <section class="cat-section theme-red" data-category="video" id="video" aria-labelledby="cat-video">
+    <div class="cat-section-head">
+      <div class="cat-icon-wrap">🎬</div>
+      <div class="cat-section-info">
+        <h2 class="cat-section-title" id="cat-video">AI Video Creation</h2>
+        <p class="cat-section-desc">Generate, edit, and enhance video content using AI — from text-to-video generation to AI avatars, dubbing, and automated video production pipelines.</p>
+      </div>
+      <span class="cat-count">10 tools</span>
+    </div>
+    <div class="tool-grid">
+      <article class="tool-card" data-name="sora openai video">
+        <div class="tool-card-head"><div class="tool-logo">🎥</div><div><div class="tool-name">Sora</div><span class="tool-badge badge-paid">PAID</span></div></div>
+        <p class="tool-desc">OpenAI's revolutionary text-to-video model generating photorealistic, temporally consistent videos up to 1 minute from text descriptions.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">OpenAI</span><span class="tool-tag">Text-to-Video</span></div><a href="https://sora.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="runway video generation">
+        <div class="tool-card-head"><div class="tool-logo">🎞</div><div><div class="tool-name">Runway</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Industry-leading video AI with Gen-3 Alpha, used by professional filmmakers and studios for text-to-video and image-to-video creation.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Gen-3</span><span class="tool-tag">Pro</span></div><a href="https://runwayml.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="heygen avatar video">
+        <div class="tool-card-head"><div class="tool-logo">👤</div><div><div class="tool-name">HeyGen</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Create professional AI avatar videos in minutes — clone your voice, translate to 40+ languages, and scale video production without a camera.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Avatars</span><span class="tool-tag">Dubbing</span></div><a href="https://heygen.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="pika video generation">
+        <div class="tool-card-head"><div class="tool-logo">⚡</div><div><div class="tool-name">Pika</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Fast text-to-video and image-to-video generator with motion control, sound effects, and scene transitions for social media content.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Fast</span><span class="tool-tag">Social</span></div><a href="https://pika.art" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="descript video editing podcast">
+        <div class="tool-card-head"><div class="tool-logo">✂️</div><div><div class="tool-name">Descript</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">AI video editor where you edit video by editing text — automatic transcription, filler word removal, and overdub voice cloning built-in.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Edit by Text</span><span class="tool-tag">Podcast</span></div><a href="https://descript.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="synthesia avatar training video">
+        <div class="tool-card-head"><div class="tool-logo">🎓</div><div><div class="tool-name">Synthesia</div><span class="tool-badge badge-paid">PAID</span></div></div>
+        <p class="tool-desc">Enterprise AI video platform for creating training, onboarding, and marketing videos with 160+ AI avatars in 130+ languages.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Enterprise</span><span class="tool-tag">Training</span></div><a href="https://synthesia.io" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="kling video generation">
+        <div class="tool-card-head"><div class="tool-logo">🌊</div><div><div class="tool-name">Kling AI</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Kuaishou's powerful video generation model producing high-quality 2-minute videos with realistic physics and smooth motion from text or images.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">2-min videos</span><span class="tool-tag">Physics</span></div><a href="https://klingai.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="invideo ai video maker">
+        <div class="tool-card-head"><div class="tool-logo">📹</div><div><div class="tool-name">InVideo AI</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Turn any script or topic into a polished video with AI-generated voiceover, stock footage, and automatic scene selection in minutes.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Script-to-Video</span><span class="tool-tag">Stock</span></div><a href="https://invideo.io" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="luma dream machine video">
+        <div class="tool-card-head"><div class="tool-logo">💫</div><div><div class="tool-name">Luma Dream Machine</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Luma AI's cinematic video generator creating fluid, high-quality videos from text and images with remarkable subject consistency.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Cinematic</span><span class="tool-tag">Consistent</span></div><a href="https://lumalabs.ai" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="pictory video repurpose blog">
+        <div class="tool-card-head"><div class="tool-logo">🎯</div><div><div class="tool-name">Pictory</div><span class="tool-badge badge-paid">PAID</span></div></div>
+        <p class="tool-desc">Repurpose long-form content into short, shareable videos automatically — perfect for turning blogs, podcasts, and webinars into social clips.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Repurpose</span><span class="tool-tag">Social Clips</span></div><a href="https://pictory.ai" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ── 4. AI AUDIO & VOICE ──────────────────────────────── -->
+  <section class="cat-section theme-cyan" data-category="audio" id="audio" aria-labelledby="cat-audio">
+    <div class="cat-section-head">
+      <div class="cat-icon-wrap">🎵</div>
+      <div class="cat-section-info">
+        <h2 class="cat-section-title" id="cat-audio">AI Audio & Voice Generation</h2>
+        <p class="cat-section-desc">Clone voices, generate music, create podcasts, and produce professional audio content with cutting-edge AI speech synthesis and music generation models.</p>
+      </div>
+      <span class="cat-count">10 tools</span>
+    </div>
+    <div class="tool-grid">
+      <article class="tool-card" data-name="elevenlabs voice clone text speech">
+        <div class="tool-card-head"><div class="tool-logo">🎤</div><div><div class="tool-name">ElevenLabs</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">The world's most realistic AI voice synthesis platform — clone any voice in seconds and generate speech in 29+ languages with emotional control.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Voice Clone</span><span class="tool-tag">29 langs</span></div><a href="https://elevenlabs.io" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="suno music generation ai">
+        <div class="tool-card-head"><div class="tool-logo">🎼</div><div><div class="tool-name">Suno</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Create full songs with vocals, instrumentation, and lyrics from a text prompt — the leading AI music generation platform for any genre.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Music Gen</span><span class="tool-tag">Vocals</span></div><a href="https://suno.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="udio music generation ai">
+        <div class="tool-card-head"><div class="tool-logo">🎸</div><div><div class="tool-name">Udio</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">High-fidelity AI music generator producing studio-quality tracks with remarkable diversity across genres from text descriptions.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Studio Quality</span><span class="tool-tag">All Genres</span></div><a href="https://udio.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="murf ai voice text speech">
+        <div class="tool-card-head"><div class="tool-logo">📢</div><div><div class="tool-name">Murf AI</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Professional AI voiceover studio with 120+ natural voices for presentations, explainer videos, podcasts, and e-learning content.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Voiceover</span><span class="tool-tag">120+ voices</span></div><a href="https://murf.ai" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="whisper openai transcription speech">
+        <div class="tool-card-head"><div class="tool-logo">🔊</div><div><div class="tool-name">Whisper (OpenAI)</div><span class="tool-badge badge-free">FREE</span></div></div>
+        <p class="tool-desc">Open-source speech recognition model achieving near-human transcription accuracy across 99 languages, deployable locally or via API.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Open Source</span><span class="tool-tag">99 langs</span></div><a href="https://openai.com/research/whisper" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="adobe podcast audio enhance">
+        <div class="tool-card-head"><div class="tool-logo">🎙</div><div><div class="tool-name">Adobe Podcast</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">AI-powered audio recording and editing that automatically removes background noise and enhances voice quality to studio-grade sound.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Noise Removal</span><span class="tool-tag">Enhance</span></div><a href="https://podcast.adobe.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="soundraw music ai background">
+        <div class="tool-card-head"><div class="tool-logo">🎹</div><div><div class="tool-name">Soundraw</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Generate royalty-free background music tailored to your mood, genre, and video length — with full customization controls for creators.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Royalty-free</span><span class="tool-tag">Background</span></div><a href="https://soundraw.io" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="resemble ai voice clone custom">
+        <div class="tool-card-head"><div class="tool-logo">🔁</div><div><div class="tool-name">Resemble AI</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Enterprise voice cloning and AI speech platform with real-time voice conversion, neural audio watermarking, and developer API access.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Enterprise</span><span class="tool-tag">Real-time</span></div><a href="https://resemble.ai" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="notebooklm google audio podcast">
+        <div class="tool-card-head"><div class="tool-logo">📓</div><div><div class="tool-name">NotebookLM</div><span class="tool-badge badge-free">FREE</span></div></div>
+        <p class="tool-desc">Google's AI notebook that transforms your documents into interactive Audio Overviews — two AI hosts discussing your content as a podcast.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Google</span><span class="tool-tag">Podcast AI</span></div><a href="https://notebooklm.google.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="otter ai transcription meeting notes">
+        <div class="tool-card-head"><div class="tool-logo">🦦</div><div><div class="tool-name">Otter.ai</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Real-time AI meeting transcription and note-taking that integrates with Zoom, Teams, and Google Meet to capture and summarize every conversation.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Meetings</span><span class="tool-tag">Transcription</span></div><a href="https://otter.ai" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ── 5. AI CODING ASSISTANTS ─────────────────────────── -->
+  <section class="cat-section theme-green" data-category="coding" id="coding" aria-labelledby="cat-coding">
+    <div class="cat-section-head">
+      <div class="cat-icon-wrap">💻</div>
+      <div class="cat-section-info">
+        <h2 class="cat-section-title" id="cat-coding">AI Coding Assistants</h2>
+        <p class="cat-section-desc">Accelerate software development with AI pair programmers that autocomplete, explain, debug, refactor, and generate entire codebases from natural language.</p>
+      </div>
+      <span class="cat-count">10 tools</span>
+    </div>
+    <div class="tool-grid">
+      <article class="tool-card" data-name="github copilot code ai">
+        <div class="tool-card-head"><div class="tool-logo">🐙</div><div><div class="tool-name">GitHub Copilot</div><span class="tool-badge badge-paid">PAID</span></div></div>
+        <p class="tool-desc">The industry-standard AI pair programmer by GitHub and OpenAI — real-time code suggestions, chat, and multi-file edits across all major IDEs.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">VS Code</span><span class="tool-tag">All IDEs</span></div><a href="https://github.com/features/copilot" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="cursor ai code editor">
+        <div class="tool-card-head"><div class="tool-logo">⌨️</div><div><div class="tool-name">Cursor</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">The AI-first code editor built on VS Code with Composer mode for multi-file edits, codebase-aware chat, and frontier model support.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">AI Editor</span><span class="tool-tag">Composer</span></div><a href="https://cursor.sh" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="claude code ai terminal">
+        <div class="tool-card-head"><div class="tool-logo">🖥</div><div><div class="tool-name">Claude Code</div><span class="tool-badge badge-paid">PAID</span></div></div>
+        <p class="tool-desc">Anthropic's agentic CLI coding tool that autonomously reads codebases, writes and tests code, and executes terminal commands with full context.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Agentic</span><span class="tool-tag">CLI</span></div><a href="https://docs.anthropic.com/claude-code" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="windsurf cascade ai code">
+        <div class="tool-card-head"><div class="tool-logo">🏄</div><div><div class="tool-name">Windsurf</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Codeium's AI-powered IDE with Cascade — an agentic AI that understands your entire codebase and takes multi-step actions autonomously.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Cascade</span><span class="tool-tag">Agentic</span></div><a href="https://codeium.com/windsurf" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="v0 vercel code ui">
+        <div class="tool-card-head"><div class="tool-logo">▲</div><div><div class="tool-name">v0 by Vercel</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Vercel's AI that generates production-ready React and UI components from text prompts, deployable instantly to the Vercel platform.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">React</span><span class="tool-tag">UI Gen</span></div><a href="https://v0.dev" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="bolt stackblitz fullstack code">
+        <div class="tool-card-head"><div class="tool-logo">⚡</div><div><div class="tool-name">Bolt.new</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">StackBlitz's browser-based AI that builds full-stack apps from prompts with live preview, npm installs, and one-click Netlify deployment.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Full-stack</span><span class="tool-tag">Browser</span></div><a href="https://bolt.new" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="tabnine code completion ai">
+        <div class="tool-card-head"><div class="tool-logo">🔮</div><div><div class="tool-name">Tabnine</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Privacy-focused AI code completion that runs locally or on private cloud, with whole-line and full-function suggestions trained on your codebase.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Private</span><span class="tool-tag">On-premise</span></div><a href="https://tabnine.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="replit ai code ghostwriter">
+        <div class="tool-card-head"><div class="tool-logo">🔄</div><div><div class="tool-name">Replit AI</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Cloud-based IDE with AI-powered code generation, debugging, and deployment — build and ship apps from any browser without local setup.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Cloud IDE</span><span class="tool-tag">Deploy</span></div><a href="https://replit.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="codeium free ai code">
+        <div class="tool-card-head"><div class="tool-logo">🆓</div><div><div class="tool-name">Codeium</div><span class="tool-badge badge-free">FREE</span></div></div>
+        <p class="tool-desc">Free AI coding assistant with autocomplete, chat, and search across 70+ languages and 40+ IDEs — no usage limits for individual developers.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Free</span><span class="tool-tag">70+ langs</span></div><a href="https://codeium.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="devin cognition ai software engineer">
+        <div class="tool-card-head"><div class="tool-logo">🤖</div><div><div class="tool-name">Devin</div><span class="tool-badge badge-paid">PAID</span></div></div>
+        <p class="tool-desc">Cognition's autonomous AI software engineer that plans, codes, tests, and deploys entire features end-to-end with minimal human intervention.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Autonomous</span><span class="tool-tag">Full-cycle</span></div><a href="https://cognition.ai" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ── 6. AI WRITING TOOLS ──────────────────────────────── -->
+  <section class="cat-section theme-gold" data-category="writing" id="writing" aria-labelledby="cat-writing">
+    <div class="cat-section-head">
+      <div class="cat-icon-wrap">✍️</div>
+      <div class="cat-section-info">
+        <h2 class="cat-section-title" id="cat-writing">AI Writing Tools</h2>
+        <p class="cat-section-desc">Draft, refine, and scale written content — from long-form articles and marketing copy to emails, books, and SEO-optimized blog posts.</p>
+      </div>
+      <span class="cat-count">10 tools</span>
+    </div>
+    <div class="tool-grid">
+      <article class="tool-card" data-name="jasper ai writing copy">
+        <div class="tool-card-head"><div class="tool-logo">📝</div><div><div class="tool-name">Jasper AI</div><span class="tool-badge badge-paid">PAID</span></div></div>
+        <p class="tool-desc">Enterprise AI writing platform with brand voice training, 50+ templates, and team collaboration for marketing and long-form content at scale.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Brand Voice</span><span class="tool-tag">Templates</span></div><a href="https://jasper.ai" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="copy.ai copywriting marketing">
+        <div class="tool-card-head"><div class="tool-logo">📋</div><div><div class="tool-name">Copy.ai</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">AI-powered GTM platform generating sales copy, cold emails, social posts, and marketing workflows with automated multi-channel outreach.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">GTM</span><span class="tool-tag">Sales Copy</span></div><a href="https://copy.ai" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="grammarly grammar writing check">
+        <div class="tool-card-head"><div class="tool-logo">✅</div><div><div class="tool-name">Grammarly</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">AI writing assistant that corrects grammar, improves clarity, adjusts tone, and now generates full drafts with generative AI across all platforms.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Grammar</span><span class="tool-tag">Tone</span></div><a href="https://grammarly.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="sudowrite fiction novel writing">
+        <div class="tool-card-head"><div class="tool-logo">📚</div><div><div class="tool-name">Sudowrite</div><span class="tool-badge badge-paid">PAID</span></div></div>
+        <p class="tool-desc">The definitive AI writing tool for fiction authors — with Story Engine, Shrink Ray, and Describe features purpose-built for novelists and screenwriters.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Fiction</span><span class="tool-tag">Novels</span></div><a href="https://sudowrite.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="writesonic ai blog seo">
+        <div class="tool-card-head"><div class="tool-logo">⚡</div><div><div class="tool-name">Writesonic</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">AI article writer with real-time Google Search integration for factual, up-to-date SEO content — complete with citations and one-click publishing.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">SEO</span><span class="tool-tag">Real-time</span></div><a href="https://writesonic.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="notion ai writing notes">
+        <div class="tool-card-head"><div class="tool-logo">📔</div><div><div class="tool-name">Notion AI</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">AI writing and Q&A embedded directly in Notion workspaces — summarize documents, generate content, and ask questions across your entire knowledge base.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Workspace</span><span class="tool-tag">Q&A</span></div><a href="https://notion.so/product/ai" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="quillbot paraphrase rewrite">
+        <div class="tool-card-head"><div class="tool-logo">🪶</div><div><div class="tool-name">QuillBot</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">AI paraphrasing, summarization, grammar checking, and citation generation tool used by over 35 million writers and students worldwide.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Paraphrase</span><span class="tool-tag">Summarize</span></div><a href="https://quillbot.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="rytr ai writing short form">
+        <div class="tool-card-head"><div class="tool-logo">🖊</div><div><div class="tool-name">Rytr</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Affordable AI writing assistant for creating short-form content — emails, social media posts, product descriptions, and landing page copy in seconds.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Affordable</span><span class="tool-tag">Short-form</span></div><a href="https://rytr.me" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="hyperwrite ai personal writing">
+        <div class="tool-card-head"><div class="tool-logo">🧬</div><div><div class="tool-name">HyperWrite</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Personal AI writing assistant that learns your unique style and voice, offering AutoWrite, Summarize, and browser-based AI suggestions anywhere.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Personal Style</span><span class="tool-tag">Browser</span></div><a href="https://hyperwrite.ai" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="longshot ai factual blog writing">
+        <div class="tool-card-head"><div class="tool-logo">🎯</div><div><div class="tool-name">LongShot AI</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">AI blog writer focused on factual accuracy with FactCheck feature, semantic SEO optimization, and end-to-end long-form article generation.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Factual</span><span class="tool-tag">FactCheck</span></div><a href="https://longshot.ai" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ── 7. AI MARKETING TOOLS ─────────────────────────────── -->
+  <section class="cat-section theme-pink" data-category="marketing" id="marketing" aria-labelledby="cat-marketing">
+    <div class="cat-section-head">
+      <div class="cat-icon-wrap">📣</div>
+      <div class="cat-section-info">
+        <h2 class="cat-section-title" id="cat-marketing">AI Marketing Tools</h2>
+        <p class="cat-section-desc">Scale marketing campaigns, personalize outreach, generate ad creatives, and analyze campaign performance with AI-powered marketing platforms.</p>
+      </div>
+      <span class="cat-count">10 tools</span>
+    </div>
+    <div class="tool-grid">
+      <article class="tool-card" data-name="hubspot ai crm marketing">
+        <div class="tool-card-head"><div class="tool-logo">🧲</div><div><div class="tool-name">HubSpot AI</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">AI-powered CRM platform with content generation, predictive lead scoring, and AI email assistants across marketing, sales, and service hubs.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">CRM</span><span class="tool-tag">Lead Scoring</span></div><a href="https://hubspot.com/artificial-intelligence" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="adcreative ai ad creative image">
+        <div class="tool-card-head"><div class="tool-logo">🎯</div><div><div class="tool-name">AdCreative.ai</div><span class="tool-badge badge-paid">PAID</span></div></div>
+        <p class="tool-desc">Generate high-converting ad creatives and copy at scale — trained on millions of top-performing ads with performance scoring and A/B test variants.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Ad Creative</span><span class="tool-tag">Performance</span></div><a href="https://adcreative.ai" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="surfer seo content optimization">
+        <div class="tool-card-head"><div class="tool-logo">🏄</div><div><div class="tool-name">Surfer SEO</div><span class="tool-badge badge-paid">PAID</span></div></div>
+        <p class="tool-desc">AI-driven content optimization platform that analyzes SERPs and provides data-backed recommendations to rank content on the first page of Google.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">SEO</span><span class="tool-tag">SERP</span></div><a href="https://surferseo.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="mailchimp email ai marketing">
+        <div class="tool-card-head"><div class="tool-logo">📧</div><div><div class="tool-name">Mailchimp AI</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Email marketing platform with AI subject line optimization, send-time prediction, content generation, and predictive segmentation for better campaign ROI.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Email</span><span class="tool-tag">Segmentation</span></div><a href="https://mailchimp.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="semrush seo keyword research">
+        <div class="tool-card-head"><div class="tool-logo">🔎</div><div><div class="tool-name">Semrush AI</div><span class="tool-badge badge-paid">PAID</span></div></div>
+        <p class="tool-desc">All-in-one marketing toolkit with AI-assisted keyword research, competitive analysis, content optimization, and social media management.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">SEO Suite</span><span class="tool-tag">Competitive</span></div><a href="https://semrush.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="clay crm data enrichment outreach">
+        <div class="tool-card-head"><div class="tool-logo">🏺</div><div><div class="tool-name">Clay</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">AI-powered data enrichment and outreach automation — pulls from 75+ data sources to build hyper-personalized prospect lists at scale.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Enrichment</span><span class="tool-tag">Outreach</span></div><a href="https://clay.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="buffer social media ai">
+        <div class="tool-card-head"><div class="tool-logo">📅</div><div><div class="tool-name">Buffer AI</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Social media scheduling platform with AI-powered content repurposing, caption generation, and optimal posting time recommendations.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Social Media</span><span class="tool-tag">Scheduling</span></div><a href="https://buffer.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="vidiq youtube growth ai">
+        <div class="tool-card-head"><div class="tool-logo">▶️</div><div><div class="tool-name">VidIQ</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">YouTube growth platform with AI title generation, keyword research, thumbnail scoring, and competitor analysis for content creators.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">YouTube</span><span class="tool-tag">Growth</span></div><a href="https://vidiq.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="apollo sales leads marketing">
+        <div class="tool-card-head"><div class="tool-logo">🚀</div><div><div class="tool-name">Apollo.io</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">B2B sales intelligence and engagement platform with 275M+ contacts, AI email sequences, and intent data for targeted prospecting.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">B2B</span><span class="tool-tag">275M contacts</span></div><a href="https://apollo.io" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="hootsuite social media management">
+        <div class="tool-card-head"><div class="tool-logo">🦉</div><div><div class="tool-name">Hootsuite</div><span class="tool-badge badge-paid">PAID</span></div></div>
+        <p class="tool-desc">Enterprise social media management with AI content generation, best time to post recommendations, and unified analytics across all channels.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Enterprise</span><span class="tool-tag">Analytics</span></div><a href="https://hootsuite.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ── 8. AI PRODUCTIVITY ───────────────────────────────── -->
+  <section class="cat-section theme-indigo" data-category="productivity" id="productivity" aria-labelledby="cat-productivity">
+    <div class="cat-section-head">
+      <div class="cat-icon-wrap">⚙️</div>
+      <div class="cat-section-info">
+        <h2 class="cat-section-title" id="cat-productivity">AI Productivity Tools</h2>
+        <p class="cat-section-desc">Supercharge daily work with AI-powered task management, meeting assistance, knowledge organization, and workflow optimization tools.</p>
+      </div>
+      <span class="cat-count">10 tools</span>
+    </div>
+    <div class="tool-grid">
+      <article class="tool-card" data-name="notion ai productivity notes">
+        <div class="tool-card-head"><div class="tool-logo">⬜</div><div><div class="tool-name">Notion AI</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">AI embedded across your entire Notion workspace for writing, summarizing meeting notes, action items extraction, and Q&A across all pages.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Workspace</span><span class="tool-tag">Notes</span></div><a href="https://notion.so" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="reclaim ai calendar scheduling">
+        <div class="tool-card-head"><div class="tool-logo">📅</div><div><div class="tool-name">Reclaim AI</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">AI calendar assistant that automatically schedules tasks, protects focus time, and optimizes your entire team's calendar in real time.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Calendar</span><span class="tool-tag">Focus Time</span></div><a href="https://reclaim.ai" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="mem ai knowledge notes">
+        <div class="tool-card-head"><div class="tool-logo">🧠</div><div><div class="tool-name">Mem</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">AI-powered note-taking app that automatically organizes your notes, surfaces relevant context, and answers questions from your personal knowledge base.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Knowledge</span><span class="tool-tag">Auto-organize</span></div><a href="https://mem.ai" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="fireflies meeting notes ai">
+        <div class="tool-card-head"><div class="tool-logo">🔥</div><div><div class="tool-name">Fireflies.ai</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">AI meeting assistant that records, transcribes, and summarizes calls on Zoom, Teams, and Meet — with searchable transcripts and action item extraction.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Meetings</span><span class="tool-tag">Transcription</span></div><a href="https://fireflies.ai" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="taskade ai tasks projects team">
+        <div class="tool-card-head"><div class="tool-logo">✅</div><div><div class="tool-name">Taskade</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">AI-powered project management and collaboration platform with custom AI agents that automate tasks, generate content, and run workflows.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Projects</span><span class="tool-tag">AI Agents</span></div><a href="https://taskade.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="linear ai issue project management">
+        <div class="tool-card-head"><div class="tool-logo">📊</div><div><div class="tool-name">Linear AI</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Modern issue tracking and project management with AI-generated issue summaries, auto-assignment, and intelligent priority recommendations for engineering teams.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Issues</span><span class="tool-tag">Engineering</span></div><a href="https://linear.app" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="superhuman email ai fast">
+        <div class="tool-card-head"><div class="tool-logo">📨</div><div><div class="tool-name">Superhuman</div><span class="tool-badge badge-paid">PAID</span></div></div>
+        <p class="tool-desc">The fastest email client ever made — with AI reply suggestions, instant triage, split inbox, and keyboard-first UX for reaching inbox zero daily.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Email</span><span class="tool-tag">Speed</span></div><a href="https://superhuman.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="cron calendar scheduling ai">
+        <div class="tool-card-head"><div class="tool-logo">🗓</div><div><div class="tool-name">Notion Calendar</div><span class="tool-badge badge-free">FREE</span></div></div>
+        <p class="tool-desc">Next-generation calendar with AI scheduling links, meeting prep summaries, and deep Notion integration to unify your time and work in one view.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Calendar</span><span class="tool-tag">Scheduling</span></div><a href="https://calendar.notion.so" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="read ai meeting summary insights">
+        <div class="tool-card-head"><div class="tool-logo">👁</div><div><div class="tool-name">Read AI</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">AI meeting assistant measuring engagement, talk time, and sentiment while generating smart meeting summaries and recommended next actions.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Engagement</span><span class="tool-tag">Summaries</span></div><a href="https://read.ai" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="reflect notes ai linked">
+        <div class="tool-card-head"><div class="tool-logo">🪞</div><div><div class="tool-name">Reflect</div><span class="tool-badge badge-paid">PAID</span></div></div>
+        <p class="tool-desc">Networked note-taking with AI that automatically links related ideas, generates connections, and helps you build a second brain effortlessly.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Second Brain</span><span class="tool-tag">Networked</span></div><a href="https://reflect.app" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ── 9. AI DATA ANALYSIS ──────────────────────────────── -->
+  <section class="cat-section theme-teal" data-category="data" id="data" aria-labelledby="cat-data">
+    <div class="cat-section-head">
+      <div class="cat-icon-wrap">📊</div>
+      <div class="cat-section-info">
+        <h2 class="cat-section-title" id="cat-data">AI Data Analysis</h2>
+        <p class="cat-section-desc">Query databases with natural language, visualize complex datasets, generate insights from raw data, and build AI-powered analytics dashboards without code.</p>
+      </div>
+      <span class="cat-count">10 tools</span>
+    </div>
+    <div class="tool-grid">
+      <article class="tool-card" data-name="julius ai data analysis chat">
+        <div class="tool-card-head"><div class="tool-logo">📈</div><div><div class="tool-name">Julius AI</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Upload any dataset and chat with your data — Julius automatically generates charts, statistics, and actionable insights in plain English.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Chat Data</span><span class="tool-tag">Charts</span></div><a href="https://julius.ai" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="tableau ai business intelligence">
+        <div class="tool-card-head"><div class="tool-logo">🗃</div><div><div class="tool-name">Tableau AI</div><span class="tool-badge badge-paid">PAID</span></div></div>
+        <p class="tool-desc">Enterprise BI platform with Einstein AI providing natural language querying, automatic insight discovery, and predictive analytics within Salesforce ecosystem.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Enterprise BI</span><span class="tool-tag">Salesforce</span></div><a href="https://tableau.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="hex data science notebook sql">
+        <div class="tool-card-head"><div class="tool-logo">🔷</div><div><div class="tool-name">Hex</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Collaborative data workspace combining SQL, Python notebooks, and AI — Magic AI generates and edits code from natural language queries against your data.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Notebooks</span><span class="tool-tag">SQL + Python</span></div><a href="https://hex.tech" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="obviously ai machine learning no code">
+        <div class="tool-card-head"><div class="tool-logo">🤖</div><div><div class="tool-name">Obviously AI</div><span class="tool-badge badge-paid">PAID</span></div></div>
+        <p class="tool-desc">No-code machine learning platform that builds predictive models from any CSV in minutes — churn prediction, sales forecasting, and classification without code.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">No-code ML</span><span class="tool-tag">Prediction</span></div><a href="https://obviously.ai" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="databricks lakehouse ai ml">
+        <div class="tool-card-head"><div class="tool-logo">🏔</div><div><div class="tool-name">Databricks</div><span class="tool-badge badge-paid">PAID</span></div></div>
+        <p class="tool-desc">Unified data intelligence platform built on Apache Spark with AI/ML capabilities, Delta Lake, and Dolly open-source LLMs for enterprise-scale analytics.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Enterprise</span><span class="tool-tag">Spark</span></div><a href="https://databricks.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="polymer search data visualization">
+        <div class="tool-card-head"><div class="tool-logo">💎</div><div><div class="tool-name">Polymer Search</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Transform spreadsheets into interactive data apps — AI builds custom dashboards, pivot tables, and visualizations from plain English questions.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Dashboards</span><span class="tool-tag">Spreadsheets</span></div><a href="https://polymersearch.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="metabase analytics sql business">
+        <div class="tool-card-head"><div class="tool-logo">📉</div><div><div class="tool-name">Metabase</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Open-source business intelligence tool with natural language questions, automated insights, and embedded analytics for product teams.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Open Source</span><span class="tool-tag">BI</span></div><a href="https://metabase.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="dataiku mlops machine learning platform">
+        <div class="tool-card-head"><div class="tool-logo">⚗️</div><div><div class="tool-name">Dataiku</div><span class="tool-badge badge-paid">PAID</span></div></div>
+        <p class="tool-desc">Enterprise MLOps platform for collaborative data science — from data prep to model deployment with visual and code-based workflows for all skill levels.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">MLOps</span><span class="tool-tag">Enterprise</span></div><a href="https://dataiku.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="rows spreadsheet ai data">
+        <div class="tool-card-head"><div class="tool-logo">📋</div><div><div class="tool-name">Rows</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">AI-powered spreadsheet that connects to live data sources, generates formulas from text, and creates shareable data reports with interactive charts.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Spreadsheet</span><span class="tool-tag">Live Data</span></div><a href="https://rows.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="chat data ai custom chatbot">
+        <div class="tool-card-head"><div class="tool-logo">💬</div><div><div class="tool-name">ChatCSV</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Upload any CSV and have a natural language conversation with your data — instant statistical analysis, trend identification, and chart generation.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">CSV Chat</span><span class="tool-tag">Instant</span></div><a href="https://chatcsv.co" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ── 10. AI AUTOMATION ────────────────────────────────── -->
+  <section class="cat-section theme-orange" data-category="automation" id="automation" aria-labelledby="cat-automation">
+    <div class="cat-section-head">
+      <div class="cat-icon-wrap">🤖</div>
+      <div class="cat-section-info">
+        <h2 class="cat-section-title" id="cat-automation">AI Automation</h2>
+        <p class="cat-section-desc">Connect apps, automate repetitive workflows, and deploy AI agents that work autonomously across your entire tech stack without writing code.</p>
+      </div>
+      <span class="cat-count">10 tools</span>
+    </div>
+    <div class="tool-grid">
+      <article class="tool-card" data-name="zapier automation workflow">
+        <div class="tool-card-head"><div class="tool-logo">⚡</div><div><div class="tool-name">Zapier</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">The largest automation platform connecting 7,000+ apps with AI-powered Zaps, Canvas workflow builder, and Zapier AI agents for autonomous task execution.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">7000+ apps</span><span class="tool-tag">Agents</span></div><a href="https://zapier.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="make integromat automation">
+        <div class="tool-card-head"><div class="tool-logo">🔮</div><div><div class="tool-name">Make</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Visual automation platform with a node-based scenario builder — more flexible than Zapier for complex multi-step workflows with conditional logic and iterators.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Visual Builder</span><span class="tool-tag">Complex Logic</span></div><a href="https://make.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="n8n automation workflow self-hosted">
+        <div class="tool-card-head"><div class="tool-logo">🔧</div><div><div class="tool-name">n8n</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Open-source workflow automation with self-hosting option, AI node integrations, and over 400 native app connectors for technical teams requiring full control.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Open Source</span><span class="tool-tag">Self-hosted</span></div><a href="https://n8n.io" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="microsoft power automate rpa">
+        <div class="tool-card-head"><div class="tool-logo">🌊</div><div><div class="tool-name">Power Automate</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Microsoft's RPA and workflow automation platform with AI Builder for intelligent document processing, approval flows, and desktop automation.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">RPA</span><span class="tool-tag">Microsoft 365</span></div><a href="https://powerautomate.microsoft.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="activepieces automation open source">
+        <div class="tool-card-head"><div class="tool-logo">🎮</div><div><div class="tool-name">Activepieces</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Open-source Zapier alternative with AI-powered flow builder — create automations with natural language prompts and deploy AI agents across your stack.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Open Source</span><span class="tool-tag">AI Builder</span></div><a href="https://activepieces.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="relevance ai agent tools">
+        <div class="tool-card-head"><div class="tool-logo">🧠</div><div><div class="tool-name">Relevance AI</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Build and deploy AI agents and multi-agent teams without code — automate sales, marketing, and ops workflows with custom AI workforce management.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">AI Agents</span><span class="tool-tag">No-code</span></div><a href="https://relevanceai.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="flowise langchain ai workflow">
+        <div class="tool-card-head"><div class="tool-logo">🌊</div><div><div class="tool-name">Flowise</div><span class="tool-badge badge-free">FREE</span></div></div>
+        <p class="tool-desc">Open-source drag-and-drop LangChain UI for building custom AI pipelines, RAG applications, and chatbot agents without writing LangChain code manually.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">LangChain</span><span class="tool-tag">RAG</span></div><a href="https://flowiseai.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="voiceflow conversation ai chatbot builder">
+        <div class="tool-card-head"><div class="tool-logo">🎙</div><div><div class="tool-name">Voiceflow</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Visual platform to design, prototype, and deploy AI conversational agents for customer support, IVR, and product experiences at enterprise scale.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Conversational AI</span><span class="tool-tag">Enterprise</span></div><a href="https://voiceflow.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="bardeen automation browser scrape">
+        <div class="tool-card-head"><div class="tool-logo">🧩</div><div><div class="tool-name">Bardeen</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Browser-based AI automation that scrapes data, automates repetitive web tasks, and integrates with CRMs and productivity tools via a Chrome extension.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Browser</span><span class="tool-tag">Scraping</span></div><a href="https://bardeen.ai" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="lindy ai personal assistant automation">
+        <div class="tool-card-head"><div class="tool-logo">👩‍💼</div><div><div class="tool-name">Lindy AI</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Build AI employees (Lindies) that handle email triage, CRM updates, meeting scheduling, and cross-app workflows like a trained virtual assistant.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">AI Employees</span><span class="tool-tag">Email</span></div><a href="https://lindy.ai" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ── 11. AI WEBSITE BUILDERS ──────────────────────────── -->
+  <section class="cat-section theme-sky" data-category="website" id="website" aria-labelledby="cat-website">
+    <div class="cat-section-head">
+      <div class="cat-icon-wrap">🌐</div>
+      <div class="cat-section-info">
+        <h2 class="cat-section-title" id="cat-website">AI Website Builders</h2>
+        <p class="cat-section-desc">Design and launch professional websites, landing pages, and full web apps from text descriptions — no design or development experience required.</p>
+      </div>
+      <span class="cat-count">8 tools</span>
+    </div>
+    <div class="tool-grid">
+      <article class="tool-card" data-name="framer ai website design">
+        <div class="tool-card-head"><div class="tool-logo">🖼</div><div><div class="tool-name">Framer AI</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Generate stunning, animated websites from a single text prompt with Framer's AI — complete with responsive layouts, CMS, and instant publishing.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Design</span><span class="tool-tag">Animate</span></div><a href="https://framer.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="wix ai website builder">
+        <div class="tool-card-head"><div class="tool-logo">🔷</div><div><div class="tool-name">Wix AI</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Wix's ADI (Artificial Design Intelligence) creates personalized websites by asking questions about your business, style, and goals in minutes.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">ADI</span><span class="tool-tag">No-code</span></div><a href="https://wix.com/ai-website-builder" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="durable ai website business">
+        <div class="tool-card-head"><div class="tool-logo">⚡</div><div><div class="tool-name">Durable</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Build an entire small business website with copy, images, and contact forms in under 30 seconds — the world's fastest AI website builder.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">30-second build</span><span class="tool-tag">SMB</span></div><a href="https://durable.co" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="webflow ai website cms">
+        <div class="tool-card-head"><div class="tool-logo">🌊</div><div><div class="tool-name">Webflow AI</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Professional no-code website builder with AI copywriting, SEO optimization, and visual development capabilities that output clean production code.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">No-code</span><span class="tool-tag">Clean Code</span></div><a href="https://webflow.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="10web ai wordpress website">
+        <div class="tool-card-head"><div class="tool-logo">🔟</div><div><div class="tool-name">10Web AI</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">AI-powered WordPress website builder that clones any site or generates from scratch with hosting, PageSpeed optimization, and managed WordPress infrastructure.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">WordPress</span><span class="tool-tag">Clone Any Site</span></div><a href="https://10web.io" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="hostinger ai website builder">
+        <div class="tool-card-head"><div class="tool-logo">🏠</div><div><div class="tool-name">Hostinger AI</div><span class="tool-badge badge-paid">PAID</span></div></div>
+        <p class="tool-desc">AI website builder bundled with hosting that creates a full website from a business description with AI-generated content, images, and SEO metadata.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">+ Hosting</span><span class="tool-tag">SEO</span></div><a href="https://hostinger.com/ai-website-builder" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="lovable ai app builder fullstack">
+        <div class="tool-card-head"><div class="tool-logo">💝</div><div><div class="tool-name">Lovable</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">AI full-stack engineer that builds complete web applications from text — React frontend, Supabase backend, and instant deployment with version control.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Full-stack App</span><span class="tool-tag">Supabase</span></div><a href="https://lovable.dev" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="squarespace ai website ecommerce">
+        <div class="tool-card-head"><div class="tool-logo">⬛</div><div><div class="tool-name">Squarespace AI</div><span class="tool-badge badge-paid">PAID</span></div></div>
+        <p class="tool-desc">Premium website and ecommerce builder with AI page and text generation, Blueprint AI for personalized site creation, and built-in SEO tools.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Ecommerce</span><span class="tool-tag">Blueprint AI</span></div><a href="https://squarespace.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ── 12. AI PRESENTATION TOOLS ───────────────────────── -->
+  <section class="cat-section theme-violet" data-category="presentation" id="presentation" aria-labelledby="cat-presentation">
+    <div class="cat-section-head">
+      <div class="cat-icon-wrap">📊</div>
+      <div class="cat-section-info">
+        <h2 class="cat-section-title" id="cat-presentation">AI Presentation Tools</h2>
+        <p class="cat-section-desc">Generate professional slide decks, pitch decks, and visual presentations in seconds from text prompts, documents, or URLs — no design skills needed.</p>
+      </div>
+      <span class="cat-count">8 tools</span>
+    </div>
+    <div class="tool-grid">
+      <article class="tool-card" data-name="gamma ai presentation slides deck">
+        <div class="tool-card-head"><div class="tool-logo">γ</div><div><div class="tool-name">Gamma</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">AI that generates beautiful, interactive presentations, documents, and webpages from a text prompt — the most popular AI presentation tool globally.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Interactive</span><span class="tool-tag">Webpages</span></div><a href="https://gamma.app" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="beautiful.ai presentation design slides">
+        <div class="tool-card-head"><div class="tool-logo">✨</div><div><div class="tool-name">Beautiful.ai</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Smart slide templates that auto-adjust layout as you add content — AI DesignerBot generates complete branded presentations from a single prompt.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Smart Templates</span><span class="tool-tag">Brand</span></div><a href="https://beautiful.ai" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="tome ai presentation narrative">
+        <div class="tool-card-head"><div class="tool-logo">📖</div><div><div class="tool-name">Tome</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">AI storytelling format for sales, fundraising, and strategy — generate narrative-driven presentations with embedded live data, videos, and AI imagery.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Storytelling</span><span class="tool-tag">Sales</span></div><a href="https://tome.app" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="canva presentations ai slides">
+        <div class="tool-card-head"><div class="tool-logo">🎨</div><div><div class="tool-name">Canva Presentations</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Canva's AI-powered presentation builder with Magic Design, bulk content generation, and a vast library of professionally designed slide templates.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Magic Design</span><span class="tool-tag">Templates</span></div><a href="https://canva.com/presentations" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="slidebean pitch deck startup">
+        <div class="tool-card-head"><div class="tool-logo">🎯</div><div><div class="tool-name">Slidebean</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">AI-powered pitch deck builder trusted by thousands of startups — automatic layout design and financial modeling templates for fundraising presentations.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Pitch Deck</span><span class="tool-tag">Startup</span></div><a href="https://slidebean.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="presentations.ai slides deck">
+        <div class="tool-card-head"><div class="tool-logo">🔵</div><div><div class="tool-name">Presentations.AI</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Generate entire slide decks from a one-line description with professional themes, AI-written content, and real-time collaboration for teams.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">One-line Gen</span><span class="tool-tag">Collab</span></div><a href="https://presentations.ai" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="plus.ai google slides powerpoint">
+        <div class="tool-card-head"><div class="tool-logo">➕</div><div><div class="tool-name">Plus AI</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">AI add-on for Google Slides and PowerPoint that generates, rewrites, and redesigns existing presentations directly inside your preferred tools.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Google Slides</span><span class="tool-tag">PowerPoint</span></div><a href="https://plusai.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="prezi ai presentation zoom visual">
+        <div class="tool-card-head"><div class="tool-logo">🔄</div><div><div class="tool-name">Prezi AI</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Dynamic zoomable presentation format with AI design assistance — create cinematic, non-linear presentations that stand out from traditional slide decks.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Zoomable</span><span class="tool-tag">Non-linear</span></div><a href="https://prezi.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ── 13. AI RESUME & CAREER ───────────────────────────── -->
+  <section class="cat-section theme-amber" data-category="resume" id="resume" aria-labelledby="cat-resume">
+    <div class="cat-section-head">
+      <div class="cat-icon-wrap">📄</div>
+      <div class="cat-section-info">
+        <h2 class="cat-section-title" id="cat-resume">AI Resume & Career Tools</h2>
+        <p class="cat-section-desc">Build ATS-optimized resumes, prepare for interviews, discover job opportunities, and accelerate your career with AI-powered professional development tools.</p>
+      </div>
+      <span class="cat-count">7 tools</span>
+    </div>
+    <div class="tool-grid">
+      <article class="tool-card" data-name="resume.io ai resume builder">
+        <div class="tool-card-head"><div class="tool-logo">📋</div><div><div class="tool-name">Resume.io</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">AI-assisted resume builder with ATS optimization scoring, professional templates, and one-click customization for each job application.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">ATS</span><span class="tool-tag">Templates</span></div><a href="https://resume.io" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="kickresume ai resume cover letter">
+        <div class="tool-card-head"><div class="tool-logo">🚀</div><div><div class="tool-name">Kickresume</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">AI resume writer generating tailored resumes and cover letters from your LinkedIn profile — with HR-approved templates and real-time writing suggestions.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">LinkedIn Import</span><span class="tool-tag">Cover Letter</span></div><a href="https://kickresume.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="interview warmup google practice">
+        <div class="tool-card-head"><div class="tool-logo">🎤</div><div><div class="tool-name">Interview Warmup</div><span class="tool-badge badge-free">FREE</span></div></div>
+        <p class="tool-desc">Google's free AI interview practice tool that analyzes your spoken responses for talking points, job-relevant terms, and areas for improvement.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Google</span><span class="tool-tag">Free Practice</span></div><a href="https://grow.google/certificates/interview-warmup" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="teal ai job search resume tracker">
+        <div class="tool-card-head"><div class="tool-logo">🐢</div><div><div class="tool-name">Teal</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">AI job search platform with resume tailoring, job tracker, LinkedIn optimization, and match scoring — the complete job search operating system.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Job Tracker</span><span class="tool-tag">Match Score</span></div><a href="https://tealhq.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="linkedin ai career jobs resume">
+        <div class="tool-card-head"><div class="tool-logo">💼</div><div><div class="tool-name">LinkedIn AI</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">LinkedIn's AI features including resume writing assistance, interview preparation, job application messaging, and AI-powered profile suggestions.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Network</span><span class="tool-tag">Largest Platform</span></div><a href="https://linkedin.com/premium" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="final round ai interview assistant">
+        <div class="tool-card-head"><div class="tool-logo">🏆</div><div><div class="tool-name">Final Round AI</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Real-time AI interview assistant that provides live answer suggestions, question predictors, and mock interview simulations tailored to specific companies and roles.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Real-time</span><span class="tool-tag">Mock Interview</span></div><a href="https://finalroundai.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="rezi ai resume ats keyword">
+        <div class="tool-card-head"><div class="tool-logo">📌</div><div><div class="tool-name">Rezi</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">AI resume builder specifically designed for ATS keyword optimization — generates achievement-focused bullet points and real-time ATS score tracking.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">ATS Keywords</span><span class="tool-tag">Score</span></div><a href="https://rezi.ai" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ── 14. AI RESEARCH & EDUCATION ─────────────────────── -->
+  <section class="cat-section theme-lime" data-category="research" id="research" aria-labelledby="cat-research">
+    <div class="cat-section-head">
+      <div class="cat-icon-wrap">🔬</div>
+      <div class="cat-section-info">
+        <h2 class="cat-section-title" id="cat-research">AI Research & Education</h2>
+        <p class="cat-section-desc">Accelerate academic research, learn any subject at your own pace, and synthesize knowledge from vast corpuses of papers, books, and educational content.</p>
+      </div>
+      <span class="cat-count">8 tools</span>
+    </div>
+    <div class="tool-grid">
+      <article class="tool-card" data-name="consensus ai research papers science">
+        <div class="tool-card-head"><div class="tool-logo">📰</div><div><div class="tool-name">Consensus</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Search 200M+ academic papers and get AI-synthesized answers with citations — the only AI search engine purpose-built for scientific research.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">200M papers</span><span class="tool-tag">Citations</span></div><a href="https://consensus.app" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="khanmigo khan academy ai tutor">
+        <div class="tool-card-head"><div class="tool-logo">🎓</div><div><div class="tool-name">Khanmigo</div><span class="tool-badge badge-paid">PAID</span></div></div>
+        <p class="tool-desc">Khan Academy's Socratic AI tutor that guides students to find answers themselves — rather than just providing them — for deeper learning and retention.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Socratic</span><span class="tool-tag">Students</span></div><a href="https://khanacademy.org/khan-labs" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="elicit ai research literature review">
+        <div class="tool-card-head"><div class="tool-logo">🔭</div><div><div class="tool-name">Elicit</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">AI research assistant that automates literature reviews — finds relevant papers, extracts key information, and synthesizes findings into structured tables.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Lit Review</span><span class="tool-tag">Synthesis</span></div><a href="https://elicit.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="duolingo learn language ai">
+        <div class="tool-card-head"><div class="tool-logo">🦜</div><div><div class="tool-name">Duolingo Max</div><span class="tool-badge badge-paid">PAID</span></div></div>
+        <p class="tool-desc">The world's most popular language learning app with GPT-4-powered Roleplay and Explain My Answer features for deeper, conversational language acquisition.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Languages</span><span class="tool-tag">Roleplay</span></div><a href="https://duolingo.com/max" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="perplexity research ai search academic">
+        <div class="tool-card-head"><div class="tool-logo">🔍</div><div><div class="tool-name">Perplexity Research</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Deep Research mode conducts extensive web searches and synthesizes comprehensive reports with full citations — like having a research analyst on demand.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Deep Research</span><span class="tool-tag">Reports</span></div><a href="https://perplexity.ai" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="wolfram alpha math science computation">
+        <div class="tool-card-head"><div class="tool-logo">🧮</div><div><div class="tool-name">Wolfram Alpha</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Computational intelligence engine answering factual, mathematical, scientific, and engineering questions with step-by-step solutions and data visualization.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Math</span><span class="tool-tag">Science</span></div><a href="https://wolframalpha.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="socratic google homework help students">
+        <div class="tool-card-head"><div class="tool-logo">📐</div><div><div class="tool-name">Socratic by Google</div><span class="tool-badge badge-free">FREE</span></div></div>
+        <p class="tool-desc">Free AI homework helper that uses image recognition and Google AI to explain math, science, history, and literature concepts from photos of textbook questions.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Free</span><span class="tool-tag">Photo Solve</span></div><a href="https://socratic.org" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="scite ai citations smart references">
+        <div class="tool-card-head"><div class="tool-logo">📚</div><div><div class="tool-name">Scite.ai</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Intelligent citation analysis showing whether papers support, contrast, or simply mention previous research — helping evaluate the credibility of scientific claims.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Smart Citations</span><span class="tool-tag">Credibility</span></div><a href="https://scite.ai" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ── 15. AI 3D & DESIGN TOOLS ─────────────────────────── -->
+  <section class="cat-section theme-rose" data-category="design3d" id="design3d" aria-labelledby="cat-design3d">
+    <div class="cat-section-head">
+      <div class="cat-icon-wrap">🎲</div>
+      <div class="cat-section-info">
+        <h2 class="cat-section-title" id="cat-design3d">AI 3D & Design Tools</h2>
+        <p class="cat-section-desc">Generate 3D models, textures, and environments with AI — enabling rapid prototyping, game asset creation, and architectural visualization from text or images.</p>
+      </div>
+      <span class="cat-count">7 tools</span>
+    </div>
+    <div class="tool-grid">
+      <article class="tool-card" data-name="spline 3d design ai">
+        <div class="tool-card-head"><div class="tool-logo">🌀</div><div><div class="tool-name">Spline AI</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Browser-based 3D design tool with AI generation for objects, scenes, and animations — export interactive 3D experiences directly to the web without code.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Browser 3D</span><span class="tool-tag">Web Export</span></div><a href="https://spline.design" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="luma 3d capture nerf photogrammetry">
+        <div class="tool-card-head"><div class="tool-logo">📷</div><div><div class="tool-name">Luma AI</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Capture photorealistic 3D models from iPhone videos using NeRF technology — ideal for product visualization, VFX assets, and immersive AR/VR content.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">NeRF</span><span class="tool-tag">iPhone</span></div><a href="https://lumalabs.ai" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="meshy 3d model ai text generation">
+        <div class="tool-card-head"><div class="tool-logo">🔷</div><div><div class="tool-name">Meshy</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">AI 3D asset generator creating textured, production-ready 3D models from text prompts or reference images for games, animation, and product design.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Text-to-3D</span><span class="tool-tag">Textured</span></div><a href="https://meshy.ai" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="figma ai design ui ux prototype">
+        <div class="tool-card-head"><div class="tool-logo">🎨</div><div><div class="tool-name">Figma AI</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">The leading collaborative design tool with AI-powered wireframing, component generation, prototype flows, and first draft creation from text descriptions.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">UI/UX</span><span class="tool-tag">Prototype</span></div><a href="https://figma.com/ai" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="uizard mockup wireframe app design">
+        <div class="tool-card-head"><div class="tool-logo">📱</div><div><div class="tool-name">Uizard</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">AI app mockup generator that turns hand-drawn sketches or text prompts into interactive prototypes — enabling rapid product ideation without design skills.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Mockups</span><span class="tool-tag">Sketch-to-UI</span></div><a href="https://uizard.io" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="csm.ai 3d world generation game">
+        <div class="tool-card-head"><div class="tool-logo">🌍</div><div><div class="tool-name">CSM.ai</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Common Sense Machines' platform for generating game-ready 3D worlds and assets from images — with physics-accurate simulation and full scene generation.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Game Assets</span><span class="tool-tag">Worlds</span></div><a href="https://csm.ai" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <article class="tool-card" data-name="adobe substance 3d texture material">
+        <div class="tool-card-head"><div class="tool-logo">🎭</div><div><div class="tool-name">Adobe Substance 3D</div><span class="tool-badge badge-paid">PAID</span></div></div>
+        <p class="tool-desc">Industry-standard 3D texturing and material design suite with AI-powered texture generation, used in film, gaming, and product visualization pipelines.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Texturing</span><span class="tool-tag">Industry</span></div><a href="https://substance3d.adobe.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+    </div>
+  </section>
+
+</main>
+
+<!-- ════════════════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════════════ -->
+<footer class="dir-footer" role="contentinfo">
+  <p>AI Tools Directory — Part of the SPHERE Project · Updated March 2025 · <strong id="footerCount">150+</strong> tools across 15 categories</p>
+</footer>
+
+<!-- ════════════════════════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════════════════════════ -->
+<script>
+(function() {
+  'use strict';
+
+  /* ── Stagger section animations ────────────────────── */
+  const sections = document.querySelectorAll('.cat-section');
+  sections.forEach((sec, i) => {
+    sec.style.animationDelay = (i * 0.07) + 's';
+  });
+
+  /* ── Category filter pills ─────────────────────────── */
+  const pills = document.querySelectorAll('.cat-pill');
+  pills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      pills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      const cat = pill.dataset.cat;
+      sections.forEach(sec => {
+        if (cat === 'all' || sec.dataset.category === cat) {
+          sec.classList.remove('hidden');
+        } else {
+          sec.classList.add('hidden');
+        }
+      });
+      updateCount();
+    });
+  });
+
+  /* ── Search ─────────────────────────────────────────── */
+  const searchInput = document.getElementById('searchInput');
+  const noResults = document.getElementById('noResults');
+
+  let debounceTimer;
+  searchInput.addEventListener('input', () => {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(runSearch, 180);
+  });
+
+  function runSearch() {
+    const query = searchInput.value.trim().toLowerCase();
+    const cards = document.querySelectorAll('.tool-card');
+
+    // Reset category filter to "all" when searching
+    if (query) {
+      pills.forEach(p => p.classList.remove('active'));
+      sections.forEach(sec => sec.classList.remove('hidden'));
+    }
+
+    cards.forEach(card => {
+      const searchData = (card.dataset.name || '') + ' ' + card.textContent.toLowerCase();
+      if (!query || searchData.includes(query)) {
+        card.classList.remove('search-hidden');
+      } else {
+        card.classList.add('search-hidden');
+      }
+    });
+
+    // Hide empty sections
+    sections.forEach(sec => {
+      const visible = sec.querySelectorAll('.tool-card:not(.search-hidden)');
+      sec.classList.toggle('hidden', visible.length === 0);
+    });
+
+    // Show no-results message
+    const anySectionVisible = [...sections].some(s => !s.classList.contains('hidden'));
+    noResults.style.display = anySectionVisible ? 'none' : 'block';
+
+    updateCount();
+  }
+
+  /* ── Update tool count ──────────────────────────────── */
+  function updateCount() {
+    const visible = document.querySelectorAll('.tool-card:not(.search-hidden)');
+    const el = document.getElementById('totalTools');
+    if (el) el.textContent = visible.length;
+  }
+
+  /* ── Lazy load simulation (intersection observer) ─── */
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.tool-card').forEach(card => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(12px)';
+      card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+      observer.observe(card);
+    });
+  }
+
+  /* ── Count total tools for footer ──────────────────── */
+  const totalCount = document.querySelectorAll('.tool-card').length;
+  const footerCount = document.getElementById('footerCount');
+  if (footerCount) footerCount.textContent = totalCount;
+  const heroCount = document.getElementById('totalTools');
+  if (heroCount) heroCount.textContent = totalCount + '+';
+
+})();
+</script>

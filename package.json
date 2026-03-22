@@ -1,0 +1,13 @@
+{
+  "name": "sphere-ai",
+  "version": "1.0.0",
+  "description": "Futuristic AI Sphere Chatbot — 11ty",
+  "type": "module",
+  "scripts": {
+    "dev": "eleventy --serve",
+    "build": "eleventy"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0"
+  }
+}
