@@ -1,0 +1,88 @@
+{
+  "categories": [
+    {
+      "id": "general",
+      "label": "General Purpose Agents",
+      "icon": "🧠",
+      "description": "Versatile AI agents capable of handling a broad spectrum of tasks — reasoning through complex problems, using tools, browsing the web, writing code, and executing multi-step plans."
+    },
+    {
+      "id": "coding",
+      "label": "Coding & Engineering Agents",
+      "icon": "💻",
+      "description": "Autonomous software engineers that read codebases, write tests, fix bugs, deploy features, and manage entire development cycles with minimal human oversight."
+    },
+    {
+      "id": "browsing",
+      "label": "Web Browsing Agents",
+      "icon": "🌐",
+      "description": "Agents that autonomously navigate the web — clicking, scrolling, extracting data, filling forms, and completing online tasks just like a human would."
+    },
+    {
+      "id": "research",
+      "label": "Research & Analysis Agents",
+      "icon": "🔬",
+      "description": "Deep research agents that autonomously gather intelligence, analyze data, synthesize academic papers, and produce comprehensive reports across any domain."
+    },
+    {
+      "id": "sales",
+      "label": "Sales & Outreach Agents",
+      "icon": "💰",
+      "description": "AI agents that autonomously prospect, personalize outreach, follow up with leads, book meetings, and accelerate the entire B2B sales pipeline end-to-end."
+    },
+    {
+      "id": "customer",
+      "label": "Customer Support Agents",
+      "icon": "🎧",
+      "description": "Autonomous support agents that resolve tickets, answer questions, process refunds, and escalate to humans — delivering 24/7 support at scale without growing headcount."
+    },
+    {
+      "id": "data",
+      "label": "Data & Analytics Agents",
+      "icon": "📊",
+      "description": "Agents that query databases in natural language, build dashboards, run Python analysis, detect anomalies, and generate data-driven insights without requiring SQL expertise."
+    },
+    {
+      "id": "content",
+      "label": "Content & Marketing Agents",
+      "icon": "✍️",
+      "description": "Agents that autonomously plan, write, publish, and distribute content — managing entire content calendars, SEO pipelines, and social media strategies end-to-end."
+    },
+    {
+      "id": "ops",
+      "label": "Operations & Workflow Agents",
+      "icon": "⚙️",
+      "description": "Agents that automate internal business operations — HR workflows, finance approvals, document processing, scheduling, and cross-system orchestration without human bottlenecks."
+    },
+    {
+      "id": "multi",
+      "label": "Multi-Agent Frameworks",
+      "icon": "🕸",
+      "description": "Frameworks for building swarms of cooperating AI agents — enabling complex, parallelized workflows where specialized agents hand off tasks, debate outputs, and collectively solve hard problems."
+    },
+    {
+      "id": "personal",
+      "label": "Personal Productivity Agents",
+      "icon": "🧑‍💻",
+      "description": "AI agents that act as your personal chief of staff — managing your inbox, organizing your calendar, summarizing documents, and handling the cognitive overhead of modern knowledge work."
+    },
+    {
+      "id": "finance",
+      "label": "Finance & Trading Agents",
+      "icon": "💹",
+      "description": "AI agents for financial analysis, automated trading, expense management, financial modeling, and market intelligence."
+    },
+    {
+      "id": "infra",
+      "label": "Dev Infrastructure & DevOps Agents",
+      "icon": "🛠",
+      "description": "AI agents that monitor systems, debug incidents, manage infrastructure as code, write and review pipelines, and keep production systems running autonomously."
+    },
+    {
+      "id": "platform",
+      "label": "Agent Builder Platforms",
+      "icon": "🏗",
+      "description": "No-code and low-code platforms for building, deploying, and managing custom AI agents — enabling any team to create production-grade agents without deep ML expertise."
+    }
+  ]
+}

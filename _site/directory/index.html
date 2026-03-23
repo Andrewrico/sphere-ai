@@ -529,7 +529,82 @@ body {
 .theme-lime   .cat-icon-wrap { background: rgba(132,204,22,0.12);  }
 .theme-amber  .cat-icon-wrap { background: rgba(245,158,11,0.12);  }
 .theme-sky    .cat-icon-wrap { background: rgba(14,165,233,0.12);  }
-.theme-violet .cat-icon-wrap { background: rgba(139,92,246,0.12);  }
+.theme-violet  .cat-icon-wrap { background: rgba(139,92,246,0.12);  }
+.theme-emerald .cat-icon-wrap { background: rgba(16,185,129,0.12);  }
+.theme-agent  .cat-icon-wrap { background: rgba(0,255,120,0.10);    }
+
+/* ── AGENT CARD VARIANT (inside directory) ─────────────── */
+.agent-inline-card {
+  background: var(--surface);
+  border: 1px solid rgba(0,255,120,0.1);
+  border-radius: var(--card-r);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+.agent-inline-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #00ff78, transparent);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.agent-inline-card:hover::before { opacity: 0.5; }
+.agent-inline-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(0,255,120,0.25);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(0,255,120,0.06);
+}
+.agent-type-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  color: #00ff78;
+  opacity: 0.75;
+  margin-top: 0.15rem;
+}
+.agent-cap-chip {
+  font-size: 0.62rem;
+  font-family: 'DM Mono', monospace;
+  letter-spacing: 0.04em;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  background: rgba(0,255,120,0.05);
+  border: 1px solid rgba(0,255,120,0.14);
+  color: var(--muted2);
+}
+.agents-cta-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+.agents-cta-btn {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  background: transparent;
+  color: #00ff78;
+  border: 1px solid rgba(0,255,120,0.4);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background 0.18s, box-shadow 0.18s, color 0.18s;
+}
+.agents-cta-btn:hover {
+  background: #00ff78;
+  color: #000;
+  box-shadow: 0 0 24px rgba(0,255,120,0.35);
+}
+.agents-cta-btn svg { width: 13px; height: 13px; }
 
 /* ── RESPONSIVE ─────────────────────────────────────────── */
 @media (max-width: 900px) {
@@ -596,6 +671,8 @@ body {
     <button class="cat-pill" data-cat="resume">Resume</button>
     <button class="cat-pill" data-cat="research">Research</button>
     <button class="cat-pill" data-cat="design3d">3D & Design</button>
+    <button class="cat-pill" data-cat="ide">IDE</button>
+    <button class="cat-pill" data-cat="agents">Agents</button>
   </div>
 </nav>
 
@@ -1634,13 +1711,279 @@ body {
     </div>
   </section>
 
+  <!-- ── 17. AI AGENTS (FEATURED) ──────────────────────── -->
+  <section class="cat-section theme-agent" data-category="agents" id="agents" aria-labelledby="cat-agents">
+    <div class="cat-section-head">
+      <div class="cat-icon-wrap">🤖</div>
+      <div class="cat-section-info">
+        <h2 class="cat-section-title" id="cat-agents">AI Agents</h2>
+        <p class="cat-section-desc">Autonomous AI systems that plan, reason, and execute multi-step tasks end-to-end — from coding agents and browser automation to research, sales, and multi-agent orchestration frameworks.</p>
+      </div>
+      <span class="cat-count">120+ agents</span>
+    </div>
+    <div class="tool-grid">
+
+      <article class="agent-inline-card" data-name="openai operator agent gpt browser tasks">
+        <div class="tool-card-head">
+          <div class="tool-logo">🤖</div>
+          <div>
+            <div class="tool-name">OpenAI Operator</div>
+            <div class="agent-type-label">BROWSER + TASK AGENT</div>
+          </div>
+          <span class="tool-badge badge-paid">PAID</span>
+        </div>
+        <p class="tool-desc">Autonomous web agent that operates browsers, fills forms, books reservations, and completes multi-step online tasks without human hand-holding.</p>
+        <div class="tool-tags"><span class="agent-cap-chip">Web Nav</span><span class="agent-cap-chip">Form Filling</span><span class="agent-cap-chip">Purchasing</span></div>
+        <div class="tool-card-foot">
+          <span style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--muted)">GPT-4o</span>
+          <a href="https://operator.chatgpt.com" target="_blank" rel="noopener" class="visit-btn">Launch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
+        </div>
+      </article>
+
+      <article class="agent-inline-card" data-name="devin cognition autonomous software engineer coding">
+        <div class="tool-card-head">
+          <div class="tool-logo">💻</div>
+          <div>
+            <div class="tool-name">Devin</div>
+            <div class="agent-type-label">AUTONOMOUS SWE</div>
+          </div>
+          <span class="tool-badge badge-paid">PAID</span>
+        </div>
+        <p class="tool-desc">Cognition's fully autonomous AI software engineer — plans, codes, tests, debugs, and deploys entire features end-to-end from a single natural language spec.</p>
+        <div class="tool-tags"><span class="agent-cap-chip">Full-cycle Dev</span><span class="agent-cap-chip">Terminal</span><span class="agent-cap-chip">Deploy</span></div>
+        <div class="tool-card-foot">
+          <span style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--muted)">Cognition LM</span>
+          <a href="https://cognition.ai" target="_blank" rel="noopener" class="visit-btn">Launch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
+        </div>
+      </article>
+
+      <article class="agent-inline-card" data-name="perplexity deep research agent citations">
+        <div class="tool-card-head">
+          <div class="tool-logo">🔍</div>
+          <div>
+            <div class="tool-name">Perplexity Deep Research</div>
+            <div class="agent-type-label">RESEARCH AGENT</div>
+          </div>
+          <span class="tool-badge badge-freemium">FREEMIUM</span>
+        </div>
+        <p class="tool-desc">Iteratively searches, reads, and synthesizes from dozens of sources in real-time to produce expert-level research reports with full citations.</p>
+        <div class="tool-tags"><span class="agent-cap-chip">Live Search</span><span class="agent-cap-chip">Synthesis</span><span class="agent-cap-chip">Citations</span></div>
+        <div class="tool-card-foot">
+          <span style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--muted)">Custom LLM</span>
+          <a href="https://perplexity.ai" target="_blank" rel="noopener" class="visit-btn">Launch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
+        </div>
+      </article>
+
+      <article class="agent-inline-card" data-name="crewai multi agent crew framework python orchestration">
+        <div class="tool-card-head">
+          <div class="tool-logo">🚢</div>
+          <div>
+            <div class="tool-name">CrewAI</div>
+            <div class="agent-type-label">MULTI-AGENT FRAMEWORK</div>
+          </div>
+          <span class="tool-badge badge-free">FREE</span>
+        </div>
+        <p class="tool-desc">Orchestrate role-playing, autonomous AI agents — define crews of specialized agents with roles, goals, and tools that collaborate on complex multi-step tasks.</p>
+        <div class="tool-tags"><span class="agent-cap-chip">Crews</span><span class="agent-cap-chip">Roles</span><span class="agent-cap-chip">Parallel</span></div>
+        <div class="tool-card-foot">
+          <span style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--muted)">Any LLM</span>
+          <a href="https://crewai.com" target="_blank" rel="noopener" class="visit-btn">Launch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
+        </div>
+      </article>
+
+      <article class="agent-inline-card" data-name="artisan ava ai sdr sales outreach agent">
+        <div class="tool-card-head">
+          <div class="tool-logo">🎨</div>
+          <div>
+            <div class="tool-name">Artisan AI (Ava)</div>
+            <div class="agent-type-label">AI SDR AGENT</div>
+          </div>
+          <span class="tool-badge badge-paid">PAID</span>
+        </div>
+        <p class="tool-desc">AI SDR that autonomously researches prospects, writes hyper-personalized cold emails, sequences follow-ups, and books meetings — 24/7 without human input.</p>
+        <div class="tool-tags"><span class="agent-cap-chip">Prospecting</span><span class="agent-cap-chip">Cold Email</span><span class="agent-cap-chip">Booking</span></div>
+        <div class="tool-card-foot">
+          <span style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--muted)">Artisan LLM</span>
+          <a href="https://artisan.co" target="_blank" rel="noopener" class="visit-btn">Launch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
+        </div>
+      </article>
+
+      <article class="agent-inline-card" data-name="intercom fin ai customer support agent ticket">
+        <div class="tool-card-head">
+          <div class="tool-logo">💬</div>
+          <div>
+            <div class="tool-name">Intercom Fin</div>
+            <div class="agent-type-label">SUPPORT AI AGENT</div>
+          </div>
+          <span class="tool-badge badge-paid">PAID</span>
+        </div>
+        <p class="tool-desc">Resolves 50%+ of support conversations instantly — answers questions from your knowledge base, performs actions in connected systems, and escalates edge cases.</p>
+        <div class="tool-tags"><span class="agent-cap-chip">KB Integration</span><span class="agent-cap-chip">Actions</span><span class="agent-cap-chip">Omnichannel</span></div>
+        <div class="tool-card-foot">
+          <span style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--muted)">GPT-4 + Custom</span>
+          <a href="https://intercom.com/fin" target="_blank" rel="noopener" class="visit-btn">Launch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
+        </div>
+      </article>
+
+      <article class="agent-inline-card" data-name="browser use autonomous web navigation python playwright">
+        <div class="tool-card-head">
+          <div class="tool-logo">🕹</div>
+          <div>
+            <div class="tool-name">Browser Use</div>
+            <div class="agent-type-label">WEB AUTOMATION AGENT</div>
+          </div>
+          <span class="tool-badge badge-free">FREE</span>
+        </div>
+        <p class="tool-desc">Open-source Python library enabling any LLM to control a real browser — the most popular framework for building custom web automation agents with vision.</p>
+        <div class="tool-tags"><span class="agent-cap-chip">Vision</span><span class="agent-cap-chip">Python SDK</span><span class="agent-cap-chip">Playwright</span></div>
+        <div class="tool-card-foot">
+          <span style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--muted)">Any LLM</span>
+          <a href="https://github.com/browser-use/browser-use" target="_blank" rel="noopener" class="visit-btn">Launch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
+        </div>
+      </article>
+
+      <article class="agent-inline-card" data-name="zapier ai agents automation workflow orchestration">
+        <div class="tool-card-head">
+          <div class="tool-logo">⚡</div>
+          <div>
+            <div class="tool-name">Zapier AI Agents</div>
+            <div class="agent-type-label">AUTOMATION ORCHESTRATOR</div>
+          </div>
+          <span class="tool-badge badge-freemium">FREEMIUM</span>
+        </div>
+        <p class="tool-desc">AI agents that autonomously trigger and orchestrate multi-step workflows across 7,000+ apps — reasoning about what actions to take without predefined trigger rules.</p>
+        <div class="tool-tags"><span class="agent-cap-chip">7000+ Apps</span><span class="agent-cap-chip">No-code</span><span class="agent-cap-chip">Reasoning</span></div>
+        <div class="tool-card-foot">
+          <span style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--muted)">GPT-4 + Custom</span>
+          <a href="https://zapier.com/agents" target="_blank" rel="noopener" class="visit-btn">Launch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
+        </div>
+      </article>
+
+      <article class="agent-inline-card" data-name="autogen microsoft multi agent framework python">
+        <div class="tool-card-head">
+          <div class="tool-logo">🔄</div>
+          <div>
+            <div class="tool-name">AutoGen</div>
+            <div class="agent-type-label">MULTI-AGENT FRAMEWORK</div>
+          </div>
+          <span class="tool-badge badge-free">FREE</span>
+        </div>
+        <p class="tool-desc">Microsoft's open-source framework where LLM agents converse, collaborate, and execute code together to solve complex tasks — the standard for agentic Python systems.</p>
+        <div class="tool-tags"><span class="agent-cap-chip">Agent Convos</span><span class="agent-cap-chip">Code Exec</span><span class="agent-cap-chip">Microsoft</span></div>
+        <div class="tool-card-foot">
+          <span style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--muted)">Any LLM</span>
+          <a href="https://github.com/microsoft/autogen" target="_blank" rel="noopener" class="visit-btn">Launch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
+        </div>
+      </article>
+
+      <article class="agent-inline-card" data-name="relevance ai platform build agents no code workforce">
+        <div class="tool-card-head">
+          <div class="tool-logo">🧠</div>
+          <div>
+            <div class="tool-name">Relevance AI</div>
+            <div class="agent-type-label">NO-CODE AGENT BUILDER</div>
+          </div>
+          <span class="tool-badge badge-freemium">FREEMIUM</span>
+        </div>
+        <p class="tool-desc">Build and deploy AI agents and multi-agent teams without code — pre-built tools, custom integrations, and an AI workforce management dashboard for any team.</p>
+        <div class="tool-tags"><span class="agent-cap-chip">No-code</span><span class="agent-cap-chip">Multi-agent</span><span class="agent-cap-chip">Dashboard</span></div>
+        <div class="tool-card-foot">
+          <span style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--muted)">Multi-model</span>
+          <a href="https://relevanceai.com" target="_blank" rel="noopener" class="visit-btn">Launch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="agents-cta-row">
+      <a href="/agents/" class="agents-cta-btn">
+        View Full Agents Directory — 120+ agents across 15 categories
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- ── 16. AI IDEs & DEV ENVIRONMENTS ───────────────────── -->
+  <section class="cat-section theme-emerald" data-category="ide" id="ide" aria-labelledby="cat-ide">
+    <div class="cat-section-head">
+      <div class="cat-icon-wrap">🖥️</div>
+      <div class="cat-section-info">
+        <h2 class="cat-section-title" id="cat-ide">AI IDEs & Dev Environments</h2>
+        <p class="cat-section-desc">Next-generation development environments where AI is a first-class citizen — full AI-native editors, cloud IDEs, and agentic coding platforms that go beyond autocomplete.</p>
+      </div>
+      <span class="cat-count">10 tools</span>
+    </div>
+    <div class="tool-grid">
+      <!-- Cursor -->
+      <article class="tool-card" data-name="cursor ai code editor vscode">
+        <div class="tool-card-head"><div class="tool-logo">⌨️</div><div><div class="tool-name">Cursor</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">The AI-first fork of VS Code with Composer multi-file edits, codebase-wide context, and inline diffs — the de-facto standard AI IDE for professional developers.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">VS Code fork</span><span class="tool-tag">Composer</span></div><a href="https://cursor.sh" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <!-- Windsurf -->
+      <article class="tool-card" data-name="windsurf codeium ide cascade agentic">
+        <div class="tool-card-head"><div class="tool-logo">🏄</div><div><div class="tool-name">Windsurf</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Codeium's IDE with Cascade — a deep-context agentic AI that plans, edits, and runs multi-step tasks across your entire codebase without constant prompting.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Cascade</span><span class="tool-tag">Agentic</span></div><a href="https://codeium.com/windsurf" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <!-- Replit -->
+      <article class="tool-card" data-name="replit cloud ide ai deploy browser">
+        <div class="tool-card-head"><div class="tool-logo">🔄</div><div><div class="tool-name">Replit</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Browser-based cloud IDE with AI Agent that scaffolds, debugs, and deploys full-stack apps from natural language — zero local setup required.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Cloud IDE</span><span class="tool-tag">Agent</span></div><a href="https://replit.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <!-- GitHub Codespaces -->
+      <article class="tool-card" data-name="github codespaces cloud dev environment copilot">
+        <div class="tool-card-head"><div class="tool-logo">🐙</div><div><div class="tool-name">GitHub Codespaces</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Instant cloud dev environments pre-configured from any repo — runs VS Code in the browser with Copilot embedded and full container customization via devcontainer.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">devcontainer</span><span class="tool-tag">GitHub</span></div><a href="https://github.com/features/codespaces" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <!-- Zed -->
+      <article class="tool-card" data-name="zed editor fast rust ai assistant">
+        <div class="tool-card-head"><div class="tool-logo">⚡</div><div><div class="tool-name">Zed</div><span class="tool-badge badge-free">FREE</span></div></div>
+        <p class="tool-desc">Ultra-fast Rust-native code editor with built-in AI assistant, real-time collaboration, and multi-buffer editing — built from scratch for performance-obsessed developers.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Rust-native</span><span class="tool-tag">Collab</span></div><a href="https://zed.dev" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <!-- JetBrains AI -->
+      <article class="tool-card" data-name="jetbrains ai assistant ide intellij webstorm">
+        <div class="tool-card-head"><div class="tool-logo">🧩</div><div><div class="tool-name">JetBrains AI</div><span class="tool-badge badge-paid">PAID</span></div></div>
+        <p class="tool-desc">AI Assistant baked into IntelliJ, WebStorm, PyCharm and all JetBrains IDEs — context-aware completions, refactors, test generation, and inline chat with deep IDE integration.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">IntelliJ</span><span class="tool-tag">All IDEs</span></div><a href="https://www.jetbrains.com/ai" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <!-- Gitpod -->
+      <article class="tool-card" data-name="gitpod cloud dev environment ephemeral">
+        <div class="tool-card-head"><div class="tool-logo">🟠</div><div><div class="tool-name">Gitpod</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Ephemeral cloud development environments spun up from any Git branch in seconds — reproducible, pre-built workspaces that eliminate "works on my machine" forever.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Ephemeral</span><span class="tool-tag">Git-native</span></div><a href="https://gitpod.io" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <!-- Antigravity -->
+      <article class="tool-card" data-name="antigravity ai ide editor native">
+        <div class="tool-card-head"><div class="tool-logo">🛸</div><div><div class="tool-name">Antigravity</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">AI-native IDE built ground-up for agentic coding — persistent memory across sessions, autonomous task execution, and a workspace designed around AI-first workflows.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">AI-native</span><span class="tool-tag">Memory</span></div><a href="https://antigravity.dev" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <!-- StackBlitz -->
+      <article class="tool-card" data-name="stackblitz webcontainer browser node ide">
+        <div class="tool-card-head"><div class="tool-logo">⚡</div><div><div class="tool-name">StackBlitz</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">Runs Node.js natively in the browser via WebContainers — instant full-stack dev environments with zero cloud latency, powering Bolt.new under the hood.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">WebContainers</span><span class="tool-tag">Node in browser</span></div><a href="https://stackblitz.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+      <!-- VS Code + Copilot -->
+      <article class="tool-card" data-name="vscode visual studio code copilot microsoft ai">
+        <div class="tool-card-head"><div class="tool-logo">🪟</div><div><div class="tool-name">VS Code + Copilot</div><span class="tool-badge badge-freemium">FREEMIUM</span></div></div>
+        <p class="tool-desc">The world's most popular editor now with native Copilot Chat, inline edits, multi-file agent mode, and MCP server support — the baseline every other AI IDE is measured against.</p>
+        <div class="tool-card-foot"><div class="tool-tags"><span class="tool-tag">Agent Mode</span><span class="tool-tag">MCP</span></div><a href="https://code.visualstudio.com" target="_blank" rel="noopener" class="visit-btn">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
+      </article>
+    </div>
+  </section>
+
 </main>
 
 <!-- ════════════════════════════════════════════════════════
      FOOTER
 ════════════════════════════════════════════════════════ -->
 <footer class="dir-footer" role="contentinfo">
-  <p>AI Tools Directory — Part of the SPHERE Project · Updated March 2025 · <strong id="footerCount">150+</strong> tools across 15 categories</p>
+  <p>AI Tools Directory — Part of the SPHERE Project · Updated March 2025 · <strong id="footerCount">150+</strong> tools across 16 categories</p>
 </footer>
 
 <!-- ════════════════════════════════════════════════════════

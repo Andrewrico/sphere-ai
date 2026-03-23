@@ -1,0 +1,116 @@
+{
+  "categories": [
+    {
+      "id": "chatbots",
+      "label": "AI Chatbots & Assistants",
+      "icon": "💬",
+      "theme": "blue",
+      "description": "Conversational AI systems that understand natural language, answer questions, generate content, and assist with complex reasoning tasks across virtually every domain."
+    },
+    {
+      "id": "image",
+      "label": "AI Image Generation",
+      "icon": "🎨",
+      "theme": "purple",
+      "description": "Transform text prompts into stunning visuals, artwork, photography, and design assets using diffusion models and generative neural networks."
+    },
+    {
+      "id": "video",
+      "label": "AI Video Creation",
+      "icon": "🎬",
+      "theme": "red",
+      "description": "Generate, edit, and enhance video content using AI — from text-to-video generation to AI avatars, dubbing, and automated video production pipelines."
+    },
+    {
+      "id": "audio",
+      "label": "AI Audio & Voice Generation",
+      "icon": "🎵",
+      "theme": "cyan",
+      "description": "Clone voices, generate music, create podcasts, and produce professional audio content with cutting-edge AI speech synthesis and music generation models."
+    },
+    {
+      "id": "coding",
+      "label": "AI Coding Assistants",
+      "icon": "💻",
+      "theme": "green",
+      "description": "Accelerate software development with AI pair programmers that autocomplete, explain, debug, refactor, and generate entire codebases from natural language."
+    },
+    {
+      "id": "writing",
+      "label": "AI Writing Tools",
+      "icon": "✍️",
+      "theme": "gold",
+      "description": "Draft, refine, and scale written content — from long-form articles and marketing copy to emails, books, and SEO-optimized blog posts."
+    },
+    {
+      "id": "marketing",
+      "label": "AI Marketing Tools",
+      "icon": "📣",
+      "theme": "pink",
+      "description": "Scale marketing campaigns, personalize outreach, generate ad creatives, and analyze campaign performance with AI-powered marketing platforms."
+    },
+    {
+      "id": "productivity",
+      "label": "AI Productivity Tools",
+      "icon": "⚙️",
+      "theme": "indigo",
+      "description": "Supercharge daily work with AI-powered task management, meeting assistance, knowledge organization, and workflow optimization tools."
+    },
+    {
+      "id": "data",
+      "label": "AI Data Analysis",
+      "icon": "📊",
+      "theme": "teal",
+      "description": "Query databases with natural language, visualize complex datasets, generate insights from raw data, and build AI-powered analytics dashboards without code."
+    },
+    {
+      "id": "automation",
+      "label": "AI Automation",
+      "icon": "🤖",
+      "theme": "orange",
+      "description": "Connect apps, automate repetitive workflows, and deploy AI agents that work autonomously across your entire tech stack without writing code."
+    },
+    {
+      "id": "website",
+      "label": "AI Website Builders",
+      "icon": "🌐",
+      "theme": "sky",
+      "description": "Design and launch professional websites, landing pages, and full web apps from text descriptions — no design or development experience required."
+    },
+    {
+      "id": "presentation",
+      "label": "AI Presentation Tools",
+      "icon": "📊",
+      "theme": "violet",
+      "description": "Generate professional slide decks, pitch decks, and visual presentations in seconds from text prompts, documents, or URLs — no design skills needed."
+    },
+    {
+      "id": "resume",
+      "label": "AI Resume & Career Tools",
+      "icon": "📄",
+      "theme": "amber",
+      "description": "Build ATS-optimized resumes, prepare for interviews, discover job opportunities, and accelerate your career with AI-powered professional development tools."
+    },
+    {
+      "id": "research",
+      "label": "AI Research & Education",
+      "icon": "🔬",
+      "theme": "lime",
+      "description": "Accelerate academic research, learn any subject at your own pace, and synthesize knowledge from vast corpuses of papers, books, and educational content."
+    },
+    {
+      "id": "design3d",
+      "label": "AI 3D & Design Tools",
+      "icon": "🎲",
+      "theme": "rose",
+      "description": "Generate 3D models, textures, and environments with AI — enabling rapid prototyping, game asset creation, and architectural visualization from text or images."
+    },
+    {
+      "id": "ide",
+      "label": "AI IDEs & Dev Environments",
+      "icon": "🖥️",
+      "theme": "emerald",
+      "description": "Next-generation development environments where AI is a first-class citizen — full AI-native editors, cloud IDEs, and agentic coding platforms that go beyond autocomplete."
+    }
+  ]
+}
