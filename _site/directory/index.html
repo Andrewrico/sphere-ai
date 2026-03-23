@@ -19,24 +19,12 @@
       --text:    #c8e8f5;
       --muted:   #3a5568;
       --glow:    rgba(0, 210, 255, 0.35);
-      --glow2:   rgba(123, 47, 255, 0.3);
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html, body {
-      height: 100%;
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'JetBrains Mono', monospace;
-      overflow-x: hidden;
-    }
-
-    /* Starfield */
+    html, body { height: 100%; background: var(--bg); color: var(--text); font-family: 'JetBrains Mono', monospace; overflow-x: hidden; }
     body::before {
       content: '';
-      position: fixed;
-      inset: 0;
+      position: fixed; inset: 0;
       background-image:
         radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,0.6) 0%, transparent 100%),
         radial-gradient(1px 1px at 30% 60%, rgba(0,210,255,0.5) 0%, transparent 100%),
@@ -48,43 +36,42 @@
         radial-gradient(1px 1px at 92% 10%, rgba(255,47,160,0.4) 0%, transparent 100%),
         radial-gradient(1px 1px at 45% 90%, rgba(255,255,255,0.3) 0%, transparent 100%),
         radial-gradient(1px 1px at 75% 20%, rgba(0,210,255,0.4) 0%, transparent 100%);
-      pointer-events: none;
-      z-index: 0;
+      pointer-events: none; z-index: 0;
     }
-
     main { position: relative; z-index: 1; }
 
-    /* Global page nav (only shown on homepage) */
-    .site-nav-link {
+    /* ── Floating nav dock ── */
+    .site-dock {
       position: fixed;
       bottom: 2rem;
       right: 2rem;
       z-index: 999;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      align-items: flex-end;
+    }
+    .site-dock a {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.12em;
-      padding: 0.6rem 1.2rem;
-      background: rgba(6, 13, 22, 0.9);
-      border: 1px solid var(--border);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      padding: 0.5rem 1rem;
+      background: rgba(6, 13, 22, 0.92);
+      border: 1px solid rgba(255,255,255,0.08);
       border-radius: 999px;
-      color: var(--accent);
+      color: #6b7280;
       text-decoration: none;
-      backdrop-filter: blur(12px);
-      transition: border-color 0.2s, box-shadow 0.2s;
+      backdrop-filter: blur(16px);
+      transition: border-color 0.2s, color 0.2s, box-shadow 0.2s;
+      white-space: nowrap;
     }
-    .site-nav-link:hover {
-      border-color: var(--accent);
-      box-shadow: 0 0 20px rgba(0, 210, 255, 0.2);
-    }
-    .site-nav-link::before {
-      content: '';
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 6px var(--accent);
-    }
+    .site-dock a:hover { color: #e8e8f0; border-color: rgba(255,255,255,0.2); }
+    .site-dock a.active { color: var(--accent); border-color: rgba(0,210,255,0.3); box-shadow: 0 0 16px rgba(0,210,255,0.1); }
+    .site-dock a.active-agents { color: #00ff78; border-color: rgba(0,255,120,0.3); box-shadow: 0 0 16px rgba(0,255,120,0.1); }
+    .site-dock a::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
   </style>
 </head>
 <body>
@@ -1766,9 +1753,11 @@ body {
 })();
 </script>
 </main>
-  <!-- Floating nav pill — links between pages -->
-  <a href="/" class="site-nav-link">
-    Back to SPHERE
-  </a>
+
+  <nav class="site-dock" aria-label="Site navigation">
+    <a href="/" >SPHERE</a>
+    <a href="/directory/" class="active">AI TOOLS</a>
+    <a href="/agents/" >AI AGENTS</a>
+  </nav>
 </body>
 </html>
